@@ -8,6 +8,10 @@ var options = {
 };
 
 var userList = new List('users', options);
+            if (i === nameLocationWork.length - 1) {
+                console.log("arcs", arcs);
+                setData(arcs);
+            }
 
 /* Unused data */
 /*

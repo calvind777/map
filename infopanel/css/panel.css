@@ -175,17 +175,9 @@ html, body {
 }
 
 .cd-panel-close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100%;
-  width: 60px;
-  /* image replacement */
-  display: inline-block;
-  overflow: hidden;
-  text-indent: 100%;
-  white-space: nowrap;
+  -webkit-margin-after: 0.5em;
 }
+
 .cd-panel-close::before, .cd-panel-close::after {
   /* close icon created in CSS */
   position: absolute;
