@@ -209,10 +209,12 @@ function renderData(arr) {
                                      start.z - end.z);
         makeLink(start, end, DOTSIZE, ELEVATION, LINEWIDTH);
     });
-//    var root = latLongToVector3(arr[0][0][0], arr[0][0][1], 0.5, 0);
-//    rootMesh = mark(root.x, root.y, root.z, 0.05);
-//    rootMesh.material.color = new THREE.Color(ROOTCOLOR);
-//    balls.push(rootMesh);
+    if (arr) {
+        var root = latLongToVector3(arr[0][0][0], arr[0][0][1], 0.5, 0);
+        rootMesh = mark(root.x, root.y, root.z, 0.05);
+        rootMesh.material.color = new THREE.Color(ROOTCOLOR);
+    }
+   balls.push(rootMesh);
     addToGroup();
 }
 
@@ -253,20 +255,6 @@ function latLongToVector3(lat, lon, radius, height) {
     
     var asdf =  new THREE.Vector3(x,y,z);
     return asdf;
-}
-
-function vector3ToLatLong(v, radius) {
-    var vx = v.x / radius
-    var vy = v.y / radius
-    var vz = v.z / radius
-
-    var phi = Math.atan2(vz, Math.sqrt(vx*vx + vy*vy));
-    var theta = Math.atan2(vy, vx);
-
-    var lat = phi*180/Math.PI;
-    var lon = theta*180/Math.PI + 180;
-    
-    return [lat, lon];
 }
 
 function animate() {
