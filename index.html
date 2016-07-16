@@ -105,9 +105,10 @@
     			//console.log({'MY FRIEND':response});
     			if (response.work != null) {
 	    			for (var b = 0; b < response.work.length;b++) {
-	    				var employer = response.work[b].employer.name;
+	    				
 	    				(function(index){
 	    					console.log(index);
+	    					var employer = response.work[index].employer.name;
 	    					getWorkLocation(response.work[index].employer.id,function(location){
 		    					employers.push({'name':response.work[index].employer.name, 'location': location.name});
 		    					if(b === response.work.length - 1){ // done
