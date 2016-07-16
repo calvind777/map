@@ -1,4 +1,4 @@
-var geocoder = new google.maps.Geocoder();
+var geocoder;
 var user = {
     name: "Shivam Thapar",
     location: "San Francisco, CA",
@@ -19,6 +19,7 @@ var user = {
 };
 
 function initMap() {
+    geocoder = new google.maps.Geocoder();
     geocodeAddress(geocoder, user.location, function(success, location) {
         if(success){
             user.locationCoords = [location.lat(), location.lng()];
