@@ -17,9 +17,8 @@ function placeMarkersForFriends() {
     if(employment){
       var mostRecentLocation = employment[0].location;
       if(mostRecentLocation){
-        var latlong = geocodeAddress(geocoder, mostRecentLocation, function(success, location) {
           var marker = new google.maps.Marker({
-            position: location,
+            position: mostRecentLocation,
             map: map,
             title: employment[0].name
           });
