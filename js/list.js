@@ -1264,7 +1264,7 @@ function populateData(city) {
 
 $( document ).ready(function() {
     $("#template").hide();
-    populateData("San Carlos");
+    populateData("Shanghai");
     //open the lateral panel
     $('.cd-btn').on('click', function(event){
       event.preventDefault();
@@ -1283,7 +1283,7 @@ $( document ).ready(function() {
       });
    
     
-    
+
       
     $("#listButton").click();
     $("#map").hide();
