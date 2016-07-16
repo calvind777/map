@@ -1,4 +1,5 @@
 // This is called with the results from from FB.getLoginStatus().
+var myLocLatLng;
 function statusChangeCallback(response) {
     //  console.log('statusChangeCallback');
     //  console.log(response);
@@ -89,7 +90,6 @@ function testAPI() {
     });
 
     setTimeout(function() {
-        var myLocLatLng;
         var arcs = [];
         geocodeAddress(geocoder, myLocation, function(success, location) {
             if(success){
