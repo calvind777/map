@@ -126,7 +126,7 @@ function addToGroup() {
     });
     scene.add(group);
 }
-
+var isClicked = false;
 function disturb(e, click) {
     mouse.x = e.clientX / WIDTH * 2 - 1;
     mouse.y = e.clientY / HEIGHT * -2 + 1;
@@ -139,6 +139,7 @@ function disturb(e, click) {
     var p = new THREE.Color(ROOTCOLOR);
     if (intersects.length > 0) {
         var mesh = intersects[0].object;
+        isClicked = true;
         if (mesh.material.color.b !== y) {
             balls.forEach(function(b) {
                 if (b.position.x == rootMesh.position.x &&
@@ -209,8 +210,7 @@ function renderData(arr) {
                                      start.z - end.z);
         makeLink(start, end, DOTSIZE, ELEVATION, LINEWIDTH);
     });
-    console.log('michael cnso', arr);
-    if (arr) {
+    if (arr.length != 0) {
         var root = latLongToVector3(arr[0][0][0], arr[0][0][1], 0.5, 0);
         rootMesh = mark(root.x, root.y, root.z, 0.05);
         rootMesh.material.color = new THREE.Color(ROOTCOLOR);
