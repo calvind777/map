@@ -11,7 +11,7 @@ var LINECOLOR = 0xaaffff;
 var MARKCOLOR = 0xffffff;
 var ROOTCOLOR = 0x4488ff;
 var HIGHLIGHT = 0x0000ff;
-var DOTSIZE = 0.02;
+var DOTSIZE = 0.05;
 var ELEVATION = 2;
 var LINEWIDTH = 1;
 var OFFSET = 15;
@@ -266,8 +266,8 @@ function mark(x, y, z, r) {
     var geom = new THREE.SphereGeometry(r * Math.random() , 20, 20);
     var mat = new THREE.MeshLambertMaterial({
         color: MARKCOLOR,
-        transparent: true,
-        opacity: 0.3,
+        //transparent: true,
+        //opacity: 0.3,
         // emissive: new THREE.Color("#ffffff")
         
     });
