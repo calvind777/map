@@ -106,19 +106,18 @@
     			if (response.work != null) {
 	    			for (var b = 0; b < response.work.length;b++) {
 	    				
-	    				(function(index){
+	    				
 	    					console.log(index);
-	    					var employer = response.work[index].employer.name;
-	    					console.log(response.work[index]);
-	    					getWorkLocation(response.work[index].employer.id,function(location){
-		    					employers.push({'name':response.work[index].employer.name, 'location': location.name});
-		    					if(b === response.work.length - 1){ // done
-					    			nameLocationWork.push({'name':name, 'location':response.location.name, 'work':employers});
-					    			console.log(nameLocationWork);
-		    					}
-		    				});
-	    				})(b);
+	    					var employer = response.work[b].employer.name;
+	    					console.log(response.work[b]);
+	    					
+		    				employers.push({'name':employer, 'location': response.work[b].location.name});
+		    				console.log(employers);
+		    			
+	    				
 	    			}
+	    			nameLocationWork.push({'name':name, 'location':response.location.name, 'work':employers});
+	    			console.log(nameLocationWork);
 	    			// for (var c = 0; c < employerLocations.length;c++) {
 	    			// 	employers[c].location = employerLocations[c];
 	    			// }
@@ -127,16 +126,8 @@
 
     		});
   }
-var pageAccessToken = '752555141554262|D-VCycQF6BJbMMErsy1yie44DIQ';
-  function getWorkLocation(id, callback) {
-  	FB.api(id, {fields:'location','access_token':pageAccessToken}, function(response){
 
-  		console.log({'loc for store':response});
-  		callback(response.location);
-  		//employerLocations.push({'name':name,'location':response.location});
-
-  	});
-  }
+  
 </script>
 
 
