@@ -12,17 +12,21 @@ function showMap() {
 
 function placeMarkersForFriends() {
   console.log(nameLocationWork);
-  for(var i = 0; i < nameLocationWork.length; i++) {
-    var employment = nameLocationWork[i].work;
-    if(employment){
-      var mostRecentLocation = employment[0].location;
-      if(mostRecentLocation){
-          var marker = new google.maps.Marker({
-            position: mostRecentLocation,
-            map: map,
-            title: employment[0].name
-          });
-      };
-    }
-  }
+  nameLocationWork.forEach(function(e, i) {
+      var employment = nameLocationWork[i].work;
+      if(employment){
+        var mostRecentLocation = employment[0].location;
+        setTimeout(function(){
+            geocodeAddress(geocoder, e.location, function(success, location) {
+              if(success){
+                var marker = new google.maps.Marker({
+                  position: location,
+                  map: map,
+                  title: employment[0].name
+                });
+              }
+            });
+        }, 500*(i+1));
+     }
+  });
 }
