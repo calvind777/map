@@ -158,7 +158,7 @@ function disturb(e, click) {
 
         var vector3 = mesh.position;
             var ltln = vector3ToLatLong(vector3, 0.5);
-            alert(ltln);
+            alert(5);
             for (var a = 0; a < nameLocationWork.length ;a++) {
                 if (nameLocationWork[a].locationCoords.lat == ltln.lat && nameLocationWork[a].locationCoords.lng == ltln.lng) {
                     clickedCity = nameLocationWork[a].substring(0,nameLocationWork[a].location.indexOf(','));
