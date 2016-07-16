@@ -11,7 +11,7 @@ var LINECOLOR = 0xaaffff;
 var MARKCOLOR = 0xffffff;
 var ROOTCOLOR = 0x4488ff;
 var HIGHLIGHT = 0x0000ff;
-var DOTSIZE = 0.04;
+var DOTSIZE = 0.02;
 var ELEVATION = 2;
 var LINEWIDTH = 1;
 var OFFSET = 40;
@@ -35,7 +35,7 @@ function init() {
 
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(30, WIDTH / HEIGHT, 0.0001, 1000);
-    camera.position.z = 3;
+    camera.position.z = 2.5;
     scene.add(camera);
 
     // ////////// LIGHT
@@ -241,9 +241,8 @@ function mark(x, y, z, r) {
         color: MARKCOLOR,
         shininess: 200
     });
-    var m = new THREE.Mesh(geom, mat);
-    m.position.set(x, y, z);
-    return m;
+    var me = new THREE.Mesh(geom, mat);
+    return me;
 }
 
 function latLongToVector3(lat, lon, radius, height) {
