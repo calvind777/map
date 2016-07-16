@@ -31,7 +31,7 @@ function init() {
     canvas.setAttribute("style","width:90%");
     canvas.setAttribute("style","height:90%");
     WIDTH = window.innerWidth;
-    HEIGHT = window.innerHeight;
+    HEIGHT = window.innerHeight * 2/3;
 
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(30, WIDTH / HEIGHT, 0.0001, 1000);
@@ -149,6 +149,7 @@ function disturb(e, click) {
         }
         mesh.material.color = y;
         
+        
         rot = false;
     }
 }
@@ -162,7 +163,6 @@ function setHistory(person) {
     clearData();
     var arr = [];
     var works = person.work;
-    console.log(works);
     for (var k = 0; k < works.length - 1; k++) {
         var start = works[k];
         var end = works[k+1];
@@ -174,7 +174,6 @@ function setHistory(person) {
 function renderHistory(arr) {
     arr.forEach(function(arc) {
         var start = latLongToVector3(arc[0].locationCoords[0], arc[0].locationCoords[1], 0.5, 0);
-        console.log(start);
         var end = latLongToVector3(arc[1].locationCoords[0], arc[1].locationCoords[1], 0.5, 0);
         makeLink(start, end, DOTSIZE, ELEVATION, LINEWIDTH);
     });
@@ -207,7 +206,6 @@ function renderData(arr) {
                                      start.z - end.z);
         makeLink(start, end, DOTSIZE, ELEVATION, LINEWIDTH);
     });
-    console.log(arr);
     var root = latLongToVector3(arr[0][0][0], arr[0][0][1], 0.5, 0);
     rootMesh = mark(root.x, root.y, root.z, 0.05);
     rootMesh.material.color = new THREE.Color(ROOTCOLOR);
