@@ -63,6 +63,9 @@
          (function(index){
           geocodeAddress(geocoder, user.work[index].location, function(success, location) {
             user.work[index].locationCoords = [location.lat(), location.lng()];
+            if(index === user.work.length - 1) {
+              locationDataLoaded();
+            }
           });
          })(i);
         }
