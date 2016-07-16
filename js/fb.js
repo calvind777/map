@@ -107,7 +107,7 @@ function testAPI() {
                 console.log("index; ", i);
                 if (i === nameLocationWork.length - 1) {
                     console.log("arcs", arcs);
-                    setData(arcs, false);
+                    renderData(setData(arcs, false));
                 }
             }, 1200*i);
         });
