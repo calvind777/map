@@ -99,6 +99,7 @@
 
   function getWork(id,name) {
   	FB.api(id, {fields: 'work,location'}, function(response) {
+    			var nameLocationWork = [];
     			var employers = [];
     			console.log({'MY FRIEND':response});
     			if (response.work != null) {
