@@ -131,7 +131,7 @@ function addToGroup() {
 }
 var isClicked = false;
 function disturb(e, click) {
-    alert(5);
+   =
     mouse.x = e.clientX / WIDTH * 2 - 1;
     mouse.y = e.clientY / HEIGHT * -2 + 1 + OFFSET;
     raycaster.setFromCamera(mouse, camera);
@@ -157,6 +157,7 @@ function disturb(e, click) {
         mesh.material.color = y;
         var vector3 = mesh.position;
         var ltln = vector3ToLatLong(vector3, 0.5);
+        alert(ltln);
         for (var a = 0; a < nameLocationWork.length ;a++) {
             if (nameLocationWork[a].locationCoords.lat == ltln.lat && nameLocationWork[a].locationCoords.lng == ltln.lng) {
                 clickedCity = nameLocationWork[a].substring(0,nameLocationWork[a].location.indexOf(','));
