@@ -310,7 +310,7 @@ function vector3ToLatLong(v, radius) {
     var lat = phi*180/Math.PI;
     var lon = theta*180/Math.PI + 180;
     
-    return new {'lat':lat,'lng':lon};
+    return  {'lat':lat,'lng':lon};
 }
 
 function animate() {
