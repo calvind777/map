@@ -91,12 +91,13 @@ function testAPI() {
     setTimeout(function() {
         var myLocLatLng;
         var arcs = [];
-        geocodeAddress(geocoder, myLocation, function(success, location) {
-            if(success){
-                myLocLatLng = [location.lat(), location.lng()];
-            }
-        });
-        setTimeout(function(){}, 300);
+        setTimeout(function(){
+            geocodeAddress(geocoder, myLocation, function(success, location) {
+                if(success){
+                    myLocLatLng = [location.lat(), location.lng()];
+                }
+            });
+        }, 400);
         nameLocationWork.forEach(function(e, i) {
             setTimeout(function(){
                 geocodeAddress(geocoder, e.location, function(success, location) {
@@ -109,7 +110,7 @@ function testAPI() {
                     console.log("arcs", arcs);
                     setData(arcs);
                 }
-            }, 300*i);
+            }, 400*i);
         });
         console.log(nameLocationWork);
     }, 1500);
