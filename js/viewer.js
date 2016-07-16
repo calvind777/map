@@ -35,7 +35,7 @@ function init() {
 
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(30, WIDTH / HEIGHT, 0.0001, 1000);
-    camera.position.z = 3;
+    camera.position.z = 2;
     scene.add(camera);
 
     // ////////// LIGHT
