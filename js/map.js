@@ -2,7 +2,7 @@ var map;
 function showMap() {
   console.log(myLocLatLng);
   map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 4,
+    zoom: 7,
     center: {lat: myLocLatLng[0], lng: myLocLatLng[1]}
   });
   $("#container").toggle();
