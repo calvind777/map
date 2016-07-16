@@ -255,6 +255,20 @@ function latLongToVector3(lat, lon, radius, height) {
     return asdf;
 }
 
+function vector3ToLatLong(v, radius) {
+    var vx = v.x / radius
+    var vy = v.y / radius
+    var vz = v.z / radius
+
+    var phi = Math.atan2(vz, Math.sqrt(vx*vx + vy*vy));
+    var theta = Math.atan2(vy, vx);
+
+    var lat = phi*180/Math.PI;
+    var lon = theta*180/Math.PI + 180;
+    
+    return [lat, lon];
+}
+
 function animate() {
     requestAnimationFrame(animate);
     if (rot)
