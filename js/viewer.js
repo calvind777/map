@@ -11,6 +11,9 @@ var LINECOLOR = 0xaaffff;
 var MARKCOLOR = 0xffffff;
 var ROOTCOLOR = 0x4488ff;
 var HIGHLIGHT = 0xffff00;
+var DOTSIZE = 0.02;
+var ELEVATION = 2;
+var LINEWIDTH = 1;
 
 var controls;
 
@@ -33,7 +36,6 @@ function init() {
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(30, WIDTH / HEIGHT, 0.0001, 1000);
     camera.position.z = 3;
-    camera.rotation.z = -.5;
     scene.add(camera);
 
     // ////////// LIGHT
@@ -45,7 +47,7 @@ function init() {
     scene.add( light );
 
     // ////////// GEOMETRY AND MESHES
-    geom = new THREE.IcosahedronGeometry(0.5, 5);
+    geom = new THREE.SphereGeometry(0.5, 100, 100);
 
     var loader = new THREE.TextureLoader();
     var bg = loader.load("img/bg.jpg");
@@ -87,9 +89,14 @@ function init() {
     canvas.appendChild(renderer.domElement);    
 
     ///////////// get data
-    var locs = setData([], true);
-
-    renderData(locs);
+    //TODO: put actual data here
+    var locs = [
+        [[1, 100],[40, 80]],
+        [[100, 20],[90, 90]],
+        [[10, 180],[71, 40]]
+        
+    ];
+    setData(locs);
 
     group = new THREE.Object3D();
     group.add(earth);
@@ -134,25 +141,19 @@ function disturb(e, click) {
     }
 }
 
-function setData(data, debug) {
-    if (debug) {
-        var cities = [
-            [37.774929, -122.41941550000001],
-            [42.3600825, -71.05888010000001],
-            [31.230416, 121.473701]
-        ];
+function setData(data) {
+    clearData();
+    renderData(data);
+}
 
-        for (var k = 0; k < 10; k++) {
-            cities.push([Math.random() * 360 - 180, Math.random() * 360 - 180]);
-        }
+function setHistory(person) {
+    clearData();
+    var works = person.work;
+    works.forEach(function(job, i) {
+    });
+}
 
-        var locs = [];
-
-        for (var k = 1; k < cities.length; k++) {
-            locs.push([cities[0], cities[k]]);
-        }
-        return locs;
-    }
+function clearData() {
     lines.forEach(function(s) {
         scene.remove(s);
     });
@@ -162,7 +163,6 @@ function setData(data, debug) {
         scene.remove(s);
     });
     balls = [];
-    return data;
 }
 
 function renderData(arr) {
@@ -173,10 +173,7 @@ function renderData(arr) {
         var dist = new THREE.Vector3(start.x - end.x,
                                      start.y - end.y,
                                      start.z - end.z);
-        var magdist = Math.sqrt(dist.x*dist.x, dist.y*dist.y, dist.z* dist.z);
-
-        var numCount = 5;
-        makeLink(start, end, 0.02, 2, 1);
+        makeLink(start, end, DOTSIZE, ELEVATION, LINEWIDTH);
     });
     var root = latLongToVector3(arr[0][0][0], arr[0][0][1], 0.5, 0);
     rootMesh = mark(root.x, root.y, root.z, 0.05);
