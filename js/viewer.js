@@ -10,6 +10,8 @@ $(function() {
 
     var controls;
 
+    var rot = true;
+    
     init();
 
     function init() {
@@ -64,6 +66,12 @@ $(function() {
         controls.enableDamping = true;
         controls.dampingFactor = 0.25;
         controls.enableZoom = true;
+
+        document.body.onkeyup = function(e) {
+            if (e.keyCode == 187) {
+                rot = !rot; 
+            }
+        }
         
         canvas.appendChild(renderer.domElement);    
 
@@ -135,7 +143,7 @@ $(function() {
     }
     
     function mark(x, y, z, r) {
-        var geom = new THREE.SphereGeometry(r, 10, 10);
+        var geom = new THREE.SphereGeometry(r, 20, 20);
         var mat = new THREE.MeshBasicMaterial({
             color: MARKCOLOR
         });
@@ -159,7 +167,8 @@ $(function() {
 
     function animate() {
         requestAnimationFrame(animate);
-        group.rotation.y += 0.01;
+        if (rot)
+            group.rotation.y += 0.01;
         renderer.render(scene, camera);
     }
 });
