@@ -222,6 +222,10 @@ function renderData(arr) {
 function makeLink(loc1, loc2, dotsize, elevation, width) {
     balls.push(mark(loc2.x, loc2.y, loc2.z, dotsize));
     lines.push(draw(loc1, loc2, elevation, width));
+    lines.push(draw(loc1, loc2, elevation * Math.random(), width));
+    lines.push(draw(loc1, loc2, elevation * Math.random(), width));
+    lines.push(draw(loc1, loc2, elevation * Math.random(), width));
+    lines.push(draw(loc1, loc2, elevation * Math.random(), width));
 }
 
 function draw(v1, v2, elevation, width) {
