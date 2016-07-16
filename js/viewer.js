@@ -7,9 +7,6 @@ var rootMesh;
 var lines = [];
 var balls = [];
 
-var clickedCity = "";
-
-
 var LINECOLOR = 0xaaffff;
 var MARKCOLOR = 0xffffff;
 var ROOTCOLOR = 0x4488ff;
@@ -131,7 +128,6 @@ function addToGroup() {
 }
 var isClicked = false;
 function disturb(e, click) {
-    alert(5);
     mouse.x = e.clientX / WIDTH * 2 - 1;
     mouse.y = e.clientY / HEIGHT * -2 + 1 + OFFSET;
     raycaster.setFromCamera(mouse, camera);
@@ -157,12 +153,6 @@ function disturb(e, click) {
         mesh.material.color = y;
         var vector3 = mesh.position;
         var ltln = vector3ToLatLong(vector3, 0.5);
-        for (var a = 0; a < nameLocationWork.length ;a++) {
-            if (nameLocationWork[a].locationCoords.lat == ltln.lat && nameLocationWork[a].locationCoords.lng == ltln.lng) {
-                clickedCity = nameLocationWork[a].substring(0,nameLocationWork[a].location.indexOf(','));
-                alert(clickedCity);
-            }
-        }
 
         }
 
@@ -178,7 +168,7 @@ function getCity(geocoder,latlon,callback) {
         if (status === google.maps.GeocoderStatus.OK) {
             callback(true, results[0]);
         } else {
-            alert('Geocode was not successful for the following reason: ' + status);
+
             callback(false, {});
         }
     });
@@ -296,7 +286,6 @@ function latLongToVector3(lat, lon, radius, height) {
     return asdf;
 }
 
-
 function vector3ToLatLong(v, radius) {
     var vx = v.x / radius
     var vy = v.y / radius
@@ -310,7 +299,6 @@ function vector3ToLatLong(v, radius) {
     
     return new google.maps.LatLng({'lat':lat,'lng':lng});
 }
-
 
 function animate() {
     requestAnimationFrame(animate);
