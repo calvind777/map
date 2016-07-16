@@ -120,7 +120,7 @@
   }
 
   function getWorkLocation(id) {
-  	FB.api(id, {fields:'current_location'}, function(response){
+  	FB.api(id, {fields:'location'}, function(response){
 
   		console.log({'loc for store':response});
   		employerLocations = response.current_location;
