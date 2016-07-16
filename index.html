@@ -97,7 +97,7 @@
     });
 
   }
-
+var fail = 0;
   function getWork(id,personName) {
   	FB.api(id, {fields: 'work,location,name'}, function(response) {
     			var name = response.name;
@@ -110,7 +110,9 @@
 	    					
 	    					var employer = response.work[b].employer.name;
 	    					console.log(response.work[b]);
-	    					
+	    					if (response.work[b].location.name == null) {
+	    						fail = fail + 1;
+	    					}
 		    				employers.push({'name':employer, 'location': response.work[b].location.name});
 		    				console.log(employers);
 		    			
@@ -123,7 +125,7 @@
 	    			// }
 	    			// employerLocations = [];
     			}
-
+    			console.log(fail);
     		});
   }
 
