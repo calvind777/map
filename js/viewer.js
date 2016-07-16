@@ -1,8 +1,10 @@
+var WIDTH, HEIGHT;
 var camera, renderer, scene, bg;
 var earth, mat, geom, tex, ellipse;
 var group;
 
-var stuff = [];
+var lines = [];
+var balls = [];
 
 var LINECOLOR = 0x33ccff;
 var MARKCOLOR = 0xffffff;
@@ -10,6 +12,9 @@ var MARKCOLOR = 0xffffff;
 var controls;
 
 var rot = true;
+
+var raycaster = new THREE.Raycaster();
+var mouse = {};
 
 init();
 
@@ -19,8 +24,8 @@ function init() {
     var canvas = document.getElementById("container");
     canvas.setAttribute("style","width:90%");
     canvas.setAttribute("style","height:90%");
-    var WIDTH = window.innerWidth;
-    var HEIGHT = window.innerHeight;
+    WIDTH = window.innerWidth;
+    HEIGHT = window.innerHeight;
 
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(30, WIDTH / HEIGHT, 0.0001, 1000);
@@ -66,6 +71,9 @@ function init() {
     controls.dampingFactor = 0.25;
     controls.enableZoom = true;
 
+    ////////// events
+    document.addEventListener("click", disturb, false);
+    
     document.body.onkeyup = function(e) {
         if (e.keyCode == 187) {
             rot = !rot; 
@@ -81,7 +89,10 @@ function init() {
 
     group = new THREE.Object3D();
     group.add(earth);
-    stuff.forEach(function(x) {
+    lines.forEach(function(x) {
+        group.add(x);
+    });
+    balls.forEach(function(x) {
         group.add(x);
     });
 
@@ -89,6 +100,35 @@ function init() {
     scene.add(group);
     
     animate();
+}
+
+function disturb(e, click) {
+    mouse.x = e.clientX / WIDTH * 2 - 1;
+    mouse.y = e.clientY / HEIGHT * -2 + 1;
+    raycaster.setFromCamera(mouse, camera);
+
+    var intersects = raycaster.intersectObjects(balls);
+    console.log(intersects);
+    var w = new THREE.Color(1, 1, 1);
+    var y = new THREE.Color(1, 1, 0);
+    if (intersects.length > 0) {
+        var mesh = intersects[0].object;
+        if (mesh.material.color.b === 0) {
+            openPanel();
+            f.material.color = w;
+        }
+        else {
+            balls.forEach(function(f) {
+                f.material.color = w;
+            });
+        }
+        mesh.material.color = y;
+        
+        camera.lookAt(mesh.position);
+        
+
+        rot = false;
+    }
 }
 
 function setData(data, debug) {
@@ -110,10 +150,15 @@ function setData(data, debug) {
         }
         return locs;
     }
-    stuff.forEach(function(s) {
+    lines.forEach(function(s) {
         scene.remove(s);
     });
-    stuff = [];
+    lines = [];
+    
+    balls.forEach(function(s) {
+        scene.remove(s);
+    });
+    balls = [];
     return data;
 }
 
@@ -126,14 +171,15 @@ function renderData(arr) {
                                      start.z - end.z);
         var magdist = Math.sqrt(dist.x*dist.x, dist.y*dist.y, dist.z* dist.z);
         console.log(magdist);
-        makeLink(start, end, 0.02, magdist * 10, 10);
+        makeLink(start, end, 0.03, magdist * 10, 10);
     });
+    var root = latLongToVector3(arr[0][0][0], arr[0][0][1], 0.5, 0);
+    balls.push(mark(root.x, root.y, root.z, 0.05));
 }
 
 function makeLink(loc1, loc2, dotsize, elevation, width) {
-    stuff.push(mark(loc1.x, loc1.y, loc1.z, dotsize));
-    stuff.push(mark(loc2.x, loc2.y, loc2.z, dotsize));
-    stuff.push(draw(loc1, loc2, elevation, width));
+    balls.push(mark(loc2.x, loc2.y, loc2.z, dotsize));
+    lines.push(draw(loc1, loc2, elevation, width));
 }
 
 function draw(v1, v2, elevation, width) {
@@ -168,7 +214,6 @@ function latLongToVector3(lat, lon, radius, height) {
     var asdf =  new THREE.Vector3(x,y,z);
     return asdf;
 }
-
 
 function animate() {
     requestAnimationFrame(animate);
