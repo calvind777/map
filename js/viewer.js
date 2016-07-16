@@ -209,10 +209,10 @@ function renderData(arr) {
                                      start.z - end.z);
         makeLink(start, end, DOTSIZE, ELEVATION, LINEWIDTH);
     });
-    var root = latLongToVector3(arr[0][0][0], arr[0][0][1], 0.5, 0);
-    rootMesh = mark(root.x, root.y, root.z, 0.05);
-    rootMesh.material.color = new THREE.Color(ROOTCOLOR);
-    balls.push(rootMesh);
+//    var root = latLongToVector3(arr[0][0][0], arr[0][0][1], 0.5, 0);
+//    rootMesh = mark(root.x, root.y, root.z, 0.05);
+//    rootMesh.material.color = new THREE.Color(ROOTCOLOR);
+//    balls.push(rootMesh);
     addToGroup();
 }
 
