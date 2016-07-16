@@ -129,7 +129,7 @@ var pageAccessToken = 'EAAKsceXi4FYBAHaootgZB7lSksJfWnF2B2df7fHX5bWLkqx0ryP0DYxI
   	FB.api(id, {fields:'location','access_token':pageAccessToken}, function(response){
 
   		console.log({'loc for store':response});
-  		callback({location:response.location});
+  		callback(response.location);
   		//employerLocations.push({'name':name,'location':response.location});
 
   	});
