@@ -11,7 +11,7 @@ var LINECOLOR = 0xaaffff;
 var MARKCOLOR = 0xffffff;
 var ROOTCOLOR = 0x4488ff;
 var HIGHLIGHT = 0x0000ff;
-var DOTSIZE = 0.06;
+var DOTSIZE = 0.02;
 var ELEVATION = 2;
 var LINEWIDTH = 1;
 var OFFSET = 15;
@@ -150,15 +150,17 @@ function disturb(e, click) {
                 else
                     b.material.color = w;
             });
-        mesh.material.color = y;
-        var vector3 = mesh.position;
-        var ltln = vector3ToLatLong(vector3, 0.5);
-
+            mesh.material.color = y;
+            var vector3 = mesh.position;
+            var ltln = vector3ToLatLong(vector3, 0.5);
+            alert(ltln);
+            for (var a = 0; a < nameLocationWork.length ;a++) {
+                if (nameLocationWork[a].locationCoords.lat == ltln.lat && nameLocationWork[a].locationCoords.lng == ltln.lng) {
+                    clickedCity = nameLocationWork[a].substring(0,nameLocationWork[a].location.indexOf(','));
+                    alert(clickedCity);
+                }
+            }
         }
-
-        
-        
-        
         rot = false;
     }
 }
@@ -234,7 +236,7 @@ function renderData(arr) {
         rootMesh = mark(root.x, root.y, root.z, 0.05);
         rootMesh.material.color = new THREE.Color(ROOTCOLOR);
     }
-   balls.push(rootMesh);
+    balls.push(rootMesh);
     addToGroup();
 }
 
@@ -264,7 +266,7 @@ function mark(x, y, z, r) {
     var geom = new THREE.SphereGeometry(r * Math.random() , 20, 20);
     var mat = new THREE.MeshLambertMaterial({
         color: MARKCOLOR,
-        // transparent: true,
+        transparent: true,
         opacity: 0.3,
         // emissive: new THREE.Color("#ffffff")
         
