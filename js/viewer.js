@@ -10,8 +10,8 @@ var balls = [];
 var LINECOLOR = 0xaaffff;
 var MARKCOLOR = 0xffffff;
 var ROOTCOLOR = 0x4488ff;
-var HIGHLIGHT = 0xffff00;
-var DOTSIZE = 0.02;
+var HIGHLIGHT = 0x0000ff;
+var DOTSIZE = 0.055;
 var ELEVATION = 2;
 var LINEWIDTH = 1;
 
@@ -95,7 +95,17 @@ function init() {
     for (var k = 0; k < 20; k++) {
         locs.push([sf,[Math.random() * 360 - 180, Math.random() * 360 - 180]]);
     }
-    setData(locs);
+
+    var works =  {
+        work: [
+            {locationCoords: [Math.random(), Math.random()]},
+            {locationCoords: [Math.random(), Math.random()]},
+            {locationCoords: [Math.random(), Math.random()]},
+            {locationCoords: [Math.random(), Math.random()]},
+            {locationCoords: [Math.random(), Math.random()]}
+        ]};
+
+    setData(works);
 
     addToGroup();
 
@@ -148,17 +158,32 @@ function setData(data) {
     renderData(data);
 }
 
-// function setHistory(person) {
-//     clearData();
-//     var arr = [];
-//     var works = person.work;
-//     for (var k = 0; k < works - 1; k++) {
-//         var start = works[k];
-//         var end = works[k+1];
-//         arr.push([start, end]);
-//     }
-//     renderData(arr);
-// }
+function setHistory(person) {
+    clearData();
+    var arr = [];
+    var works = person.work;
+    console.log(works);
+    for (var k = 0; k < works.length - 1; k++) {
+        var start = works[k];
+        var end = works[k+1];
+        arr.push([start, end]);
+    }
+    renderHistory(arr);
+}
+
+function renderHistory(arr) {
+    arr.forEach(function(arc) {
+        var start = latLongToVector3(arc[0].locationCoords[0], arc[0].locationCoords[1], 0.5, 0);
+        console.log(start);
+        var end = latLongToVector3(arc[1].locationCoords[0], arc[1].locationCoords[1], 0.5, 0);
+        makeLink(start, end, DOTSIZE, ELEVATION, LINEWIDTH);
+    });
+    var root = latLongToVector3(arr[0][0][0], arr[0][0][1], 0.5, 0);
+    rootMesh = mark(root.x, root.y, root.z, DOTSIZE * 1.5);
+    rootMesh.material.color = new THREE.Color(ROOTCOLOR);
+    balls.push(rootMesh);
+    addToGroup();
+}
 
 function clearData() {
     lines.forEach(function(s) {
@@ -174,9 +199,9 @@ function clearData() {
 }
 
 function renderData(arr) {
-    arr.forEach(function(arc) {
-        var start = latLongToVector3(arc[0][0], arc[0][1], 0.5, 0);
-        var end = latLongToVector3(arc[1][0], arc[1][1], 0.5, 0);
+    arr.forEach(function(arc, i) {
+        var start = latLongToVector3(arc[i][0][0], arc[i][0][1], 0.5, 0);
+        var end = latLongToVector3(arc[i][1][0], arc[i][1][1], 0.5, 0);
         var dist = new THREE.Vector3(start.x - end.x,
                                      start.y - end.y,
                                      start.z - end.z);
