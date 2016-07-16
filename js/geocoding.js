@@ -1,3 +1,4 @@
+var geocoder;
 var user = {
     name: "Shivam Thapar",
     location: "San Francisco, CA",
@@ -18,23 +19,22 @@ var user = {
 };
 
 function initMap() {
-    var geocoder = new google.maps.Geocoder();
-
-    geocodeAddress(geocoder, user.location, function(success, location) {
-        if(success){
-            user.locationCoords = [location.lat(), location.lng()];
-        }
-    });
-    for( var i = 0; i < user.work.length; i++) {
-        (function(index){
-            geocodeAddress(geocoder, user.work[index].location, function(success, location) {
-                user.work[index].locationCoords = [location.lat(), location.lng()];
-                if(index === user.work.length - 1) {
-                    locationDataLoaded();
-                }
-            });
-        })(i);
-    }
+    geocoder = new google.maps.Geocoder();
+    // geocodeAddress(geocoder, user.location, function(success, location) {
+    //     if(success){
+    //         user.locationCoords = [location.lat(), location.lng()];
+    //     }
+    // });
+    // for( var i = 0; i < user.work.length; i++) {
+    //     (function(index){
+    //         geocodeAddress(geocoder, user.work[index].location, function(success, location) {
+    //             user.work[index].locationCoords = [location.lat(), location.lng()];
+    //             if(index === user.work.length - 1) {
+    //                 locationDataLoaded();
+    //             }
+    //         });
+    //     })(i);
+    // }
 }
 
 function geocodeAddress(geocoder, address, callback) {
