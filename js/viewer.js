@@ -149,13 +149,31 @@ function disturb(e, click) {
                 else
                     b.material.color = w;
             });
-        }
         mesh.material.color = y;
+        var vector3 = mesh.position;
+        var ltln = vector3ToLatLong(vector3, 0.5);
+
+        }
+
+        
         
         
         rot = false;
     }
 }
+
+function getCity(geocoder,latlon,callback) {
+    geocoder.geocode({'location': latlon}, function(results, status) {
+        if (status === google.maps.GeocoderStatus.OK) {
+            callback(true, results[0]);
+        } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+            callback(false, {});
+        }
+    });
+}
+
+
 
 function setData(data) {
     clearData();
@@ -266,6 +284,23 @@ function latLongToVector3(lat, lon, radius, height) {
     return asdf;
 }
 
+<<<<<<< HEAD
+function vector3ToLatLong(v, radius) {
+    var vx = v.x / radius
+    var vy = v.y / radius
+    var vz = v.z / radius
+
+    var phi = Math.atan2(vz, Math.sqrt(vx*vx + vy*vy));
+    var theta = Math.atan2(vy, vx);
+
+    var lat = phi*180/Math.PI;
+    var lon = theta*180/Math.PI + 180;
+    
+    return new google.maps.LatLng({'lat':lat,'lng':lng});
+}
+
+=======
+>>>>>>> 54d3f23894d6818a1124c4ac9fb94ec13fd5d3f7
 function animate() {
     requestAnimationFrame(animate);
     if (rot)
