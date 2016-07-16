@@ -11,6 +11,7 @@ function showMap() {
 }
 
 function placeMarkersForFriends() {
+  console.log(nameLocationWork);
   for(var i = 0; i < nameLocationWork.length; i++) {
     var employment = nameLocationWork[i].work;
     if(employment){
