@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700|Droid+Serif' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="css/list.css"> <!-- List style -->
+  <link rel="stylesheet" href="css/panel.css"> <!-- Slide in panel style -->
+    
+  <title>Map</title>
+</head>
+<body>
+  <main class="cd-main-content">
+    <h1>Map Stuff Here</h1>
+    <a href="#0" class="cd-btn">I clicked on a city yo</a>
+    <!-- your content here -->
+  </main>
+
+  <div class="cd-panel from-right">
+    <header class="cd-panel-header">
+      <h1>San Francisco</h1>
+      <a href="#0" class="cd-panel-close">Close</a>
+    </header>
+
+    <div class="cd-panel-container">
+      <div class="cd-panel-content">
+        <a href="#0" class="cd-panel-close">Close</a>
+        <div id="users">
+          <input class="search" placeholder="Search" />
+          <button class="sort" data-sort="name">
+            Sort by name
+          </button>
+          <ul class="list annotated-list">
+            <li id="template" data-id="0">
+              <table>
+                <tr>
+                  <td> <img src="" height="40" width="40" class="image"> <td>
+                  <td>
+                    <h3 class="name"></h3>
+                    <p class="company"></p>
+                  </td>
+                <tr>
+              </table>
+            </li>
+          </ul>
+      </div> <!-- cd-panel-content -->
+    </div> <!-- cd-panel-container -->
+  </div> <!-- cd-panel -->
+<script src="http://listjs.com/no-cdn/list.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+<script src="js/list.js"></script> <!-- Resource jQuery -->
+</body>
+</html>
