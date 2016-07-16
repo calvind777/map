@@ -62,7 +62,6 @@ function init() {
         specularMap: alpha,
         specular: new THREE.Color("#111111"),
         wireframe: true,
-        emissive: new THREE.Color("#ffffff")
     });
     earth = new THREE.Mesh(geom, mat);
 
@@ -242,7 +241,9 @@ function mark(x, y, z, r) {
         color: MARKCOLOR,
         shininess: 200,
         transparent: true,
-        opacity: 0.3
+        opacity: 0.3,
+        emissive: new THREE.Color("#ffffff")
+        
     });
     var m = new THREE.Mesh(geom, mat);
     m.position.set(x, y, z);
