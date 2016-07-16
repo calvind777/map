@@ -149,13 +149,31 @@ function disturb(e, click) {
                 else
                     b.material.color = w;
             });
-        }
         mesh.material.color = y;
+        var vector3 = mesh.position;
+        var ltln = vector3ToLatLong(vector3, 0.5);
+
+        }
+
+        
         
         
         rot = false;
     }
 }
+
+function getCity(geocoder,latlon,callback) {
+    geocoder.geocode({'location': latlon}, function(results, status) {
+        if (status === google.maps.GeocoderStatus.OK) {
+            callback(true, results[0].geometry.location);
+        } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+            callback(false, {});
+        }
+    });
+}
+
+function changeSide()
 
 function setData(data) {
     clearData();
@@ -269,7 +287,7 @@ function vector3ToLatLong(v, radius) {
     var lat = phi*180/Math.PI;
     var lon = theta*180/Math.PI + 180;
     
-    return [lat, lon];
+    return new google.maps.LatLng({'lat':lat,'lng':lng});
 }
 
 function animate() {
