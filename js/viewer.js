@@ -158,7 +158,7 @@ function disturb(e, click) {
 
         var vector3 = mesh.position;
             var ltln = vector3ToLatLong(vector3, 0.5);
-            alert(5);
+            console.log(5);
             for (var a = 0; a < nameLocationWork.length ;a++) {
                 if (nameLocationWork[a].locationCoords.lat == ltln.lat && nameLocationWork[a].locationCoords.lng == ltln.lng) {
                     clickedCity = nameLocationWork[a].substring(0,nameLocationWork[a].location.indexOf(','));
@@ -207,8 +207,9 @@ function renderHistory(arr) {
         makeLink(start, end, DOTSIZE, ELEVATION, LINEWIDTH);
     });
     var root = latLongToVector3(arr[0][0].locationCoords[0], arr[0][0].locationCoords[1], 0.5, 0);
-    rootMesh = mark(root.x, root.y, root.z, DOTSIZE * 1.5);
+    rootMesh = mark(root.x, root.y, root.z, 0.2);
     rootMesh.material.color = new THREE.Color(ROOTCOLOR);
+    rootMesh.material.transparent = false;
     balls.push(rootMesh);
     addToGroup();
 }
@@ -270,8 +271,8 @@ function mark(x, y, z, r) {
     var geom = new THREE.SphereGeometry(r * Math.random() , 20, 20);
     var mat = new THREE.MeshLambertMaterial({
         color: MARKCOLOR,
-        //transparent: true,
-        //opacity: 0.3,
+        transparent: true,
+        opacity: 0.3,
         // emissive: new THREE.Color("#ffffff")
         
     });
