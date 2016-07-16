@@ -11,10 +11,10 @@ var LINECOLOR = 0xaaffff;
 var MARKCOLOR = 0xffffff;
 var ROOTCOLOR = 0x4488ff;
 var HIGHLIGHT = 0x0000ff;
-var DOTSIZE = 0.04;
+var DOTSIZE = 0.02;
 var ELEVATION = 2;
 var LINEWIDTH = 1;
-var OFFSET = 40;
+var OFFSET = 15;
 var controls;
 
 var rot = true;
@@ -35,7 +35,7 @@ function init() {
 
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(30, WIDTH / HEIGHT, 0.0001, 1000);
-    camera.position.z = 3;
+    camera.position.z = 2.5;
     scene.add(camera);
 
     // ////////// LIGHT
@@ -61,7 +61,7 @@ function init() {
         bumpScale: 0.02,
         specularMap: alpha,
         specular: new THREE.Color("#111111"),
-        wireframe: true
+        wireframe: true,
     });
     earth = new THREE.Mesh(geom, mat);
 
@@ -165,7 +165,7 @@ function disturb(e, click) {
 function getCity(geocoder,latlon,callback) {
     geocoder.geocode({'location': latlon}, function(results, status) {
         if (status === google.maps.GeocoderStatus.OK) {
-            callback(true, results[0].geometry.location);
+            callback(true, results[0]);
         } else {
             alert('Geocode was not successful for the following reason: ' + status);
             callback(false, {});
@@ -173,7 +173,7 @@ function getCity(geocoder,latlon,callback) {
     });
 }
 
-function changeSide()
+
 
 function setData(data) {
     clearData();
@@ -255,9 +255,13 @@ function draw(v1, v2, elevation, width) {
 
 function mark(x, y, z, r) {
     var geom = new THREE.SphereGeometry(r, 20, 20);
-    var mat = new THREE.MeshPhongMaterial({
+    var mat = new THREE.MeshLambertMaterial({
         color: MARKCOLOR,
-        shininess: 200
+        shininess: 200,
+        transparent: true,
+        opacity: 0.3,
+        emissive: new THREE.Color("#ffffff")
+        
     });
     var m = new THREE.Mesh(geom, mat);
     m.position.set(x, y, z);
@@ -276,6 +280,7 @@ function latLongToVector3(lat, lon, radius, height) {
     return asdf;
 }
 
+<<<<<<< HEAD
 function vector3ToLatLong(v, radius) {
     var vx = v.x / radius
     var vy = v.y / radius
@@ -290,6 +295,8 @@ function vector3ToLatLong(v, radius) {
     return new google.maps.LatLng({'lat':lat,'lng':lng});
 }
 
+=======
+>>>>>>> 54d3f23894d6818a1124c4ac9fb94ec13fd5d3f7
 function animate() {
     requestAnimationFrame(animate);
     if (rot)
