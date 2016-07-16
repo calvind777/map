@@ -580,7 +580,7 @@ var data = [
             "location":"Beijing, China"
          },
          {  
-            "name":"Wish (dba ContextLogic)",
+            "name":"Wish",
             "location":"San Francisco, Calif."
          }
       ],
