@@ -1282,10 +1282,8 @@ $( document ).ready(function() {
 
       });
    
-    $("#container").on('click', function(event){
-          
-         alert(6);
-      });
+    
+    
       
     $("#listButton").click();
     $("#map").hide();
