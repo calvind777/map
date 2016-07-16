@@ -1280,4 +1280,5 @@ $( document ).ready(function() {
     });
     
     $("#listButton").click();
+    $("#map").hide();
 });
