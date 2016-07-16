@@ -1278,5 +1278,6 @@ $( document ).ready(function() {
         event.preventDefault();
       }
     });
-    $('.cd-btn').click();
+    
+    $("#listButton").click();
 });
