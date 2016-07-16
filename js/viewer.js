@@ -75,7 +75,7 @@ function init() {
     canvas.appendChild(renderer.domElement);    
 
     ///////////// get data
-    var locs = getData();
+    var locs = getData([], true);
 
     renderData(locs);
 
@@ -91,24 +91,30 @@ function init() {
     animate();
 }
 
-function getData() {
+function getData(data, debug) {
+    if (debug) {
+        var cities = [
+            [37.774929, -122.41941550000001],
+            [42.3600825, -71.05888010000001],
+            [31.230416, 121.473701]
+        ];
 
-    var cities = [
-        [37.774929, -122.41941550000001],
-        [42.3600825, -71.05888010000001],
-        [31.230416, 121.473701]
-    ];
+        for (var k = 0; k < 10; k++) {
+            cities.push([Math.random() * 360 - 180, Math.random() * 360 - 180]);
+        }
 
-    for (var k = 0; k < 10; k++) {
-        cities.push([Math.random() * 360 - 180, Math.random() * 360 - 180]);
+        var locs = [];
+
+        for (var k = 1; k < cities.length; k++) {
+            locs.push([cities[0], cities[k]]);
+        }
+        return locs;
     }
-
-    var locs = [];
-
-    for (var k = 1; k < cities.length; k++) {
-        locs.push([cities[0], cities[k]]);
-    }
-    return locs;
+    stuff.forEach(function(s) {
+        scene.remove(s);
+    });
+    stuff = [];
+    return data;
 }
 
 function renderData(arr) {
