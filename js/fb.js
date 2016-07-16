@@ -104,7 +104,7 @@ function testAPI() {
                 }
             });
             setTimeout(function(){}, 1200);
-        })
+        });
         console.log("arcs", arcs);
         setData(arcs, false);
         console.log(nameLocationWork);
