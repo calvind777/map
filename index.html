@@ -73,7 +73,7 @@
   }(document, 'script', 'facebook-jssdk'));
 
   var nameLocationWork = [];
-  var employerLocations = "";
+  var employerLocations = [];
   function testAPI() {
     
     FB.api('/me', 
@@ -106,12 +106,17 @@
     			if (response.work != null) {
 	    			for (var b = 0; b < response.work.length;b++) {
 	    				var employer = response.work[b].employer.name;
+	    				employers.push({'name':employer});
 	    				getWorkLocation(response.work[b].employer.id);
 
-	    				employers.push({'name':employer,'location':employerLocations});
-	    				employerLocations = "";
-	    				alert("employer data for "+id);
+	    				
+	    				//employerLocations = "";
+	    				//alert("employer data for "+id);
 	    			}
+	    			for (var c = 0; c < employerLocations.length) {
+	    				employers[c].location = employerLocations[c];
+	    			}
+	    			employerLocations = [];
     			}
 
     			nameLocationWork.push({'name':name, 'location':response.location.name, 'work':employers});
@@ -123,7 +128,7 @@ var pageAccessToken = 'EAAKsceXi4FYBAAfiRPtoHJQMwVhrMaV00GmV29oVWe6xme0U3diK4fPw
   	FB.api(id, {fields:'location','access_token':pageAccessToken}, function(response){
 
   		console.log({'loc for store':response});
-  		employerLocations = response.current_location;
+  		employerLocations.push(response.location);
 
   	});
   }
