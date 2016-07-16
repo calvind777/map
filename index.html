@@ -76,7 +76,7 @@
   function testAPI() {
     
     FB.api('/me', 
-    	{fields: 'about,bio,education,email,location'},
+    	{fields: 'friends,work,location'},
     	function(response) {
       
       console.log(response);
@@ -87,7 +87,7 @@
 
 
 
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+<fb:login-button scope="public_profile,user_friends,user_location,user_work_history" onlogin="checkLoginState();">
 </fb:login-button>
 
 <div id="status">
