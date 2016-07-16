@@ -1285,6 +1285,8 @@ $( document ).ready(function() {
     $("#container").on('click', function(event){
          if (isClicked == true) {
          alert(6);
+         $('.cd-panel').addClass('is-visible');
+         isClicked = false;
          }
       });
       
