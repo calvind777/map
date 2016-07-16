@@ -7,6 +7,9 @@ var rootMesh;
 var lines = [];
 var balls = [];
 
+var clickedCity = "";
+
+
 var LINECOLOR = 0xaaffff;
 var MARKCOLOR = 0xffffff;
 var ROOTCOLOR = 0x4488ff;
@@ -138,6 +141,7 @@ function disturb(e, click) {
     var y = new THREE.Color(HIGHLIGHT);
     var p = new THREE.Color(ROOTCOLOR);
     if (intersects.length > 0) {
+        console.log(intersects);
         var mesh = intersects[0].object;
         isClicked = true;
         if (mesh.material.color.b !== y) {
@@ -153,7 +157,10 @@ function disturb(e, click) {
         var vector3 = mesh.position;
         var ltln = vector3ToLatLong(vector3, 0.5);
         for (int a = 0; a < nameLocationWork.length;a++) {
-            if nameLocationWork[a].
+            if (nameLocationWork[a].locationCoords.lat = ltln.lat && nameLocationWork[a].locationCoords.lng = ltln.lng) {
+                clickedCity = nameLocationWork[a].substring(0,nameLocationWork[a].location.indexOf(','));
+                
+            }
         }
 
         }
@@ -242,7 +249,13 @@ function renderData(arr) {
 
 function makeLink(loc1, loc2, dotsize, elevation, width) {
     balls.push(mark(loc2.x, loc2.y, loc2.z, dotsize));
-    lines.push(draw(loc1, loc2, elevation, width));
+    for (var k = 0; k < Math.random() * 5; k++) {
+        lines.push(draw(loc1, loc2, elevation * Math.random(), width));
+        lines.push(draw(loc1, loc2, elevation * Math.random(), width));
+        lines.push(draw(loc1, loc2, elevation * Math.random(), width));
+        lines.push(draw(loc1, loc2, elevation * Math.random(), width));
+        lines.push(draw(loc1, loc2, elevation * Math.random(), width));
+    }
 }
 
 function draw(v1, v2, elevation, width) {
@@ -257,13 +270,12 @@ function draw(v1, v2, elevation, width) {
 }
 
 function mark(x, y, z, r) {
-    var geom = new THREE.SphereGeometry(r, 20, 20);
+    var geom = new THREE.SphereGeometry(r * Math.random() , 20, 20);
     var mat = new THREE.MeshLambertMaterial({
         color: MARKCOLOR,
-        shininess: 200,
         transparent: true,
         opacity: 0.3,
-        emissive: new THREE.Color("#ffffff")
+        // emissive: new THREE.Color("#ffffff")
         
     });
     var m = new THREE.Mesh(geom, mat);
