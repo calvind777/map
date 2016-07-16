@@ -30,7 +30,7 @@ function init() {
     var canvas = document.getElementById("container");
     canvas.setAttribute("style","width:90%");
     canvas.setAttribute("style","height:90%");
-    WIDTH = window.innerWidth;
+    WIDTH = window.innerWidth * 2/3;
     HEIGHT = window.innerHeight;
 
     scene = new THREE.Scene();
@@ -96,16 +96,16 @@ function init() {
         locs.push([sf,[Math.random() * 360 - 180, Math.random() * 360 - 180]]);
     }
 
-    var works =  {
-        work: [
-            {locationCoords: [Math.random(), Math.random()]},
-            {locationCoords: [Math.random(), Math.random()]},
-            {locationCoords: [Math.random(), Math.random()]},
-            {locationCoords: [Math.random(), Math.random()]},
-            {locationCoords: [Math.random(), Math.random()]}
-        ]};
+    // var works =  {
+    //     work: [
+    //         {locationCoords: [Math.random(), Math.random()]},
+    //         {locationCoords: [Math.random(), Math.random()]},
+    //         {locationCoords: [Math.random(), Math.random()]},
+    //         {locationCoords: [Math.random(), Math.random()]},
+    //         {locationCoords: [Math.random(), Math.random()]}
+    //     ]};
 
-    setData(works);
+    setData(locs);
 
     addToGroup();
 
@@ -149,6 +149,7 @@ function disturb(e, click) {
         }
         mesh.material.color = y;
         
+        
         rot = false;
     }
 }
@@ -162,7 +163,6 @@ function setHistory(person) {
     clearData();
     var arr = [];
     var works = person.work;
-    console.log(works);
     for (var k = 0; k < works.length - 1; k++) {
         var start = works[k];
         var end = works[k+1];
@@ -174,7 +174,6 @@ function setHistory(person) {
 function renderHistory(arr) {
     arr.forEach(function(arc) {
         var start = latLongToVector3(arc[0].locationCoords[0], arc[0].locationCoords[1], 0.5, 0);
-        console.log(start);
         var end = latLongToVector3(arc[1].locationCoords[0], arc[1].locationCoords[1], 0.5, 0);
         makeLink(start, end, DOTSIZE, ELEVATION, LINEWIDTH);
     });
@@ -200,8 +199,8 @@ function clearData() {
 
 function renderData(arr) {
     arr.forEach(function(arc, i) {
-        var start = latLongToVector3(arc[i][0][0], arc[i][0][1], 0.5, 0);
-        var end = latLongToVector3(arc[i][1][0], arc[i][1][1], 0.5, 0);
+        var start = latLongToVector3(arc[0][0], arc[0][1], 0.5, 0);
+        var end = latLongToVector3(arc[1][0], arc[1][1], 0.5, 0);
         var dist = new THREE.Vector3(start.x - end.x,
                                      start.y - end.y,
                                      start.z - end.z);
