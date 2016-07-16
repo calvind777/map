@@ -13,7 +13,7 @@ var locked = false;
 
 nameLocationWork.push = function() {
     while (locked) {
-        setTimeout(function() {}, 250);
+        setTimeout(function() {}, 1000);
     }
     locked = true;
     geocodeAddress(geocoder, arguments[0].location, function(success, location) {
@@ -22,7 +22,7 @@ nameLocationWork.push = function() {
             setData(pointPairs, false);
             console.log("Added " + arguments[0].location);
         } else {
-            setTimeout(function() {}, 500);
+            setTimeout(function() {}, 10000);
             return nameLocationWork.push(arguments[0]);
         }
     });
