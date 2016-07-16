@@ -109,6 +109,7 @@
 	    				(function(index){
 	    					getWorkLocation(response.work[b].employer.id,function(location){
 		    					employers.push({'name':employer, 'location': location});
+		    					alert(b);
 		    					if(b === response.work.length - 1){ // done
 					    			nameLocationWork.push({'name':name, 'location':response.location.name, 'work':employers});
 					    			console.log(nameLocationWork);
