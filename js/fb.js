@@ -96,7 +96,7 @@ function testAPI() {
                 myLocLatLng = [location.lat(), location.lng()];
             }
         });
-        setTimeout(function(){}, 250);
+        setTimeout(function(){}, 300);
         nameLocationWork.forEach(function(e, i) {
             setTimeout(function(){
                 geocodeAddress(geocoder, e.location, function(success, location) {
@@ -109,7 +109,7 @@ function testAPI() {
                     console.log("arcs", arcs);
                     setData(arcs);
                 }
-            }, 250*i);
+            }, 300*i);
         });
         console.log(nameLocationWork);
     }, 1500);
