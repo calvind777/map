@@ -1,7 +1,7 @@
 var WIDTH, HEIGHT;
 var camera, renderer, scene, bg;
 var earth, mat, geom, tex, ellipse;
-var group;
+var group = new THREE.Object3D();
 var rootMesh;
 
 var lines = [];
@@ -50,7 +50,7 @@ function init() {
     geom = new THREE.SphereGeometry(0.5, 100, 100);
 
     var loader = new THREE.TextureLoader();
-    var bg = loader.load("img/bg.jpg");
+    var bgl = loader.load("img/bg.jpg");
     var diffuse = loader.load("img/earthdiffuse.jpg");
     var alpha = loader.load("img/earthalpha.jpg");
     var bump = loader.load("img/earthbump.jpg");
@@ -66,7 +66,7 @@ function init() {
     earth = new THREE.Mesh(geom, mat);
 
     bg = new THREE.Mesh(new THREE.SphereGeometry(5), new THREE.MeshBasicMaterial({
-        map: bg,
+        map: bgl,
         side: THREE.DoubleSide
     }));
     
@@ -96,21 +96,23 @@ function init() {
         [[1, 100],[71, 40]]
         
     ];
-    setData(locs);
 
+    addToGroup();
+
+    animate();
+}
+
+function addToGroup() {
     group = new THREE.Object3D();
     group.add(earth);
+    group.add(bg);
     lines.forEach(function(x) {
         group.add(x);
     });
     balls.forEach(function(x) {
         group.add(x);
     });
-
-    group.add(bg);
     scene.add(group);
-    
-    animate();
 }
 
 function disturb(e, click) {
@@ -146,12 +148,17 @@ function setData(data) {
     renderData(data);
 }
 
-function setHistory(person) {
-    clearData();
-    var works = person.work;
-    works.forEach(function(job, i) {
-    });
-}
+// function setHistory(person) {
+//     clearData();
+//     var arr = [];
+//     var works = person.work;
+//     for (var k = 0; k < works - 1; k++) {
+//         var start = works[k];
+//         var end = works[k+1];
+//         arr.push([start, end]);
+//     }
+//     renderData(arr);
+// }
 
 function clearData() {
     lines.forEach(function(s) {
@@ -163,10 +170,10 @@ function clearData() {
         scene.remove(s);
     });
     balls = [];
+    scene.remove(group);
 }
 
 function renderData(arr) {
-    
     arr.forEach(function(arc) {
         var start = latLongToVector3(arc[0][0], arc[0][1], 0.5, 0);
         var end = latLongToVector3(arc[1][0], arc[1][1], 0.5, 0);
@@ -179,6 +186,7 @@ function renderData(arr) {
     rootMesh = mark(root.x, root.y, root.z, 0.05);
     rootMesh.material.color = new THREE.Color(ROOTCOLOR);
     balls.push(rootMesh);
+    addToGroup();
 }
 
 function makeLink(loc1, loc2, dotsize, elevation, width) {
