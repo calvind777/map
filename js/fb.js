@@ -64,15 +64,15 @@ window.fbAsyncInit = function() {
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
-//Moved to callback
-//var nameLocationWork = [];
+var myLocation;
+var nameLocationWork = [];
 var employerLocations = [];
 function testAPI() {
     
     FB.api('/me', 
            {fields: 'work,location'},
            function(response) {
-               myLocCallback(response.location.name);
+               myLocation = response.location.name;
            });
 
     FB.api('/me/friends', function(response) {
@@ -88,7 +88,25 @@ function testAPI() {
 
     });
 
-    setTimeout(function(){console.log(nameLocationWork);}, 2000);
+    setTimeout(function() {
+        var myLocLatLng;
+        var arcs = [];
+        geocodeAddress(geocoder, myLocation, function(success, location) {
+            if(success){
+                myLocLatLng = [location.lat(), location.lng()];
+            }
+        });
+        setTimeout(function(){}, 1000);
+        nameLocationWork.forEach(function(e) {
+            geocodeAddress(geocoder, e.location, function(success, location) {
+                if(success){
+                    arcs.push([myLocLatLng, [location.lat(), location.lng()]]);
+                }
+            });
+            setTimeout(function(){}, 1000);
+        })
+        console.log(nameLocationWork);
+    }, 2000);
 
 }
 var fail = 0;
