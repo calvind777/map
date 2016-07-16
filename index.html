@@ -72,7 +72,8 @@
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 
-  
+  var nameLocationWork = [];
+
   function testAPI() {
     
     FB.api('/me', 
@@ -84,26 +85,35 @@
 
     FB.api('/me/friends', function(response) {
     	console.log(response);
-    	var nameLocationWork = []; //format: [{name:yourname, location:yourlocation, work:yourwork}, {name:yourname, location:yourlocation, work:yourwork}, etc]
+    	 //format: [{name:yourname, location:yourlocation, work:yourwork}, {name:yourname, location:yourlocation, work:yourwork}, etc]
     	for (var a = 0; a < response.data.length; a ++) {
     		var id = response.data[a].id;
     		var name = response.data[a].name;
-    		FB.api(id, {fields: 'work,location'}, function(response) {
-    			var employers = [];
-    			console.log({'MY FRIEND':response});
-    			for (var b = 0; b < response.work.length;b++) {
-    				var employer = response.work[b].employer.name;
-    				employers.push(employer);
-    			}
 
+    		getWork(id,name);
 
-    			nameLocationWork.push({'name':name, 'location':response.location.name, 'work':employers});
-    			console.log(nameLocationWork);
-    		});
     	}
 
     });
 
+  }
+
+  function getWork(id,name) {
+  	FB.api(id, {fields: 'work,location'}, function(response) {
+    			
+    			var employers = [];
+    			console.log({'MY FRIEND':response});
+    			if (response.work != null) {
+	    			for (var b = 0; b < response.work.length;b++) {
+	    				var employer = response.work[b].employer.name;
+	    				employers.push(employer);
+	    				alert("employer data for "+id);
+	    			}
+    			}
+
+    			nameLocationWork.push({'name':name, 'location':response.location.name, 'work':employers});
+    			console.log(nameLocationWork);
+    		});
   }
 </script>
 
