@@ -96,15 +96,17 @@ function testAPI() {
                 myLocLatLng = [location.lat(), location.lng()];
             }
         });
-        setTimeout(function(){}, 1000);
+        setTimeout(function(){}, 1200);
         nameLocationWork.forEach(function(e) {
             geocodeAddress(geocoder, e.location, function(success, location) {
                 if(success){
                     arcs.push([myLocLatLng, [location.lat(), location.lng()]]);
                 }
             });
-            setTimeout(function(){}, 1000);
+            setTimeout(function(){}, 1200);
         })
+        console.log("arcs", arcs);
+        setData(arcs, false);
         console.log(nameLocationWork);
     }, 2000);
 
