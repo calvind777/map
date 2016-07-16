@@ -305,6 +305,6 @@ function vector3ToLatLong(v, radius) {
 function animate() {
     requestAnimationFrame(animate);
     if (rot)
-        group.rotation.y += 0.01;
+        group.rotation.y += 0.001;
     renderer.render(scene, camera);
 }
