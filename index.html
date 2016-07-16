@@ -91,7 +91,7 @@
     		FB.api(id, {fields: 'work,location'}, function(response) {
     			var employers = [];
     			console.log({'MY FRIEND':response});
-    			if (response.work.length != null) {
+    			if (response.work       != null) {
 	    			for (var b = 0; b < response.work.length;b++) {
 	    				var employer = response.work[b].employer.name;
 	    				employers.push(employer);
