@@ -9,7 +9,13 @@ function myLocCallback(loc) {
     });
 }
 
+var locked = false;
+
 nameLocationWork.push = function() {
+    while (locked) {
+        setTimeout(function() {}, 250);
+    }
+    locked = true;
     geocodeAddress(geocoder, arguments[0].location, function(success, location) {
         if(success){
             pointPairs.push([myLocLatLng,[location.lat(), location.lng()]]);
@@ -20,5 +26,6 @@ nameLocationWork.push = function() {
             return nameLocationWork.push(arguments[0]);
         }
     });
+    locked = false;
     return Array.prototype.push.apply(this, arguments);
 };
