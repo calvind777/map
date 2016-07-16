@@ -7,6 +7,7 @@ function showMap() {
   });
   $("#container").toggle();
   $("#map").toggle();
+  placeMarkersForFriends();
 }
 
 function placeMarkersForFriends() {
