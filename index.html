@@ -75,7 +75,9 @@
   
   function testAPI() {
     
-    FB.api('/me', {fields: 'work'}, function(response) {
+    FB.api('/me', 
+    	{fields: 'about,bio,education,email,location'},
+    	function(response) {
       
       console.log(response);
     });
