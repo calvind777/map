@@ -11,7 +11,7 @@ var LINECOLOR = 0xaaffff;
 var MARKCOLOR = 0xffffff;
 var ROOTCOLOR = 0x4488ff;
 var HIGHLIGHT = 0x0000ff;
-var DOTSIZE = 0.055;
+var DOTSIZE = 0.04;
 var ELEVATION = 2;
 var LINEWIDTH = 1;
 
@@ -96,14 +96,14 @@ function init() {
         locs.push([sf,[Math.random() * 360 - 180, Math.random() * 360 - 180]]);
     }
 
-    // var works =  {
-    //     work: [
-    //         {locationCoords: [Math.random(), Math.random()]},
-    //         {locationCoords: [Math.random(), Math.random()]},
-    //         {locationCoords: [Math.random(), Math.random()]},
-    //         {locationCoords: [Math.random(), Math.random()]},
-    //         {locationCoords: [Math.random(), Math.random()]}
-    //     ]};
+    var works =  {
+        work: [
+            {locationCoords: [Math.random() * 360 - 180, Math.random() * 360 - 180]},
+            {locationCoords: [Math.random() * 360 - 180, Math.random() * 360 - 180]},
+            {locationCoords: [Math.random() * 360 - 180, Math.random() * 360 - 180]},
+            {locationCoords: [Math.random() * 360 - 180, Math.random() * 360 - 180]},
+            {locationCoords: [Math.random() * 360 - 180, Math.random() * 360 - 180]}
+        ]};
 
     setData(locs);
 
@@ -116,10 +116,12 @@ function addToGroup() {
     group = new THREE.Object3D();
     group.add(earth);
     group.add(bg);
-    lines.forEach(function(x) {
+    var lineSet = new Set(lines);
+    lineSet.forEach(function(x) {
         group.add(x);
     });
-    balls.forEach(function(x) {
+    var ballSet = new Set(balls);
+    ballSet.forEach(function(x) {
         group.add(x);
     });
     scene.add(group);
@@ -168,6 +170,7 @@ function setHistory(person) {
         var end = works[k+1];
         arr.push([start, end]);
     }
+    console.log(arr);
     renderHistory(arr);
 }
 
@@ -177,7 +180,7 @@ function renderHistory(arr) {
         var end = latLongToVector3(arc[1].locationCoords[0], arc[1].locationCoords[1], 0.5, 0);
         makeLink(start, end, DOTSIZE, ELEVATION, LINEWIDTH);
     });
-    var root = latLongToVector3(arr[0][0][0], arr[0][0][1], 0.5, 0);
+    var root = latLongToVector3(arr[0][0].locationCoords[0], arr[0][0].locationCoords[1], 0.5, 0);
     rootMesh = mark(root.x, root.y, root.z, DOTSIZE * 1.5);
     rootMesh.material.color = new THREE.Color(ROOTCOLOR);
     balls.push(rootMesh);
