@@ -138,6 +138,7 @@ function disturb(e, click) {
     var y = new THREE.Color(HIGHLIGHT);
     var p = new THREE.Color(ROOTCOLOR);
     if (intersects.length > 0) {
+        console.log(intersects);
         var mesh = intersects[0].object;
         isClicked = true;
         if (mesh.material.color.b !== y) {
@@ -265,7 +266,7 @@ function mark(x, y, z, r) {
         color: MARKCOLOR,
         transparent: true,
         opacity: 0.3,
-        emissive: new THREE.Color("#ffffff")
+        // emissive: new THREE.Color("#ffffff")
         
     });
     var m = new THREE.Mesh(geom, mat);
