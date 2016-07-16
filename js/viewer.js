@@ -141,7 +141,7 @@ function disturb(e, click) {
         console.log(intersects);
         var mesh = intersects[0].object;
         isClicked = true;
-        if (mesh.material.color.b !== y) {4
+        if (mesh.material.color.b !== y) {
             balls.forEach(function(b) {
                 if (b.position.x == rootMesh.position.x &&
                     b.position.y == rootMesh.position.y &&
