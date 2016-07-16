@@ -64,15 +64,16 @@ window.fbAsyncInit = function() {
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
-var nameLocationWork = [];
+//Moved to callback
+//var nameLocationWork = [];
+var myLocation;
 var employerLocations = [];
 function testAPI() {
     
     FB.api('/me', 
            {fields: 'work,location'},
            function(response) {
-               
-               // console.log(response);
+               myLocation =  response.location.name;
            });
 
     FB.api('/me/friends', function(response) {
