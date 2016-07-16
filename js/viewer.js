@@ -209,7 +209,7 @@ function renderData(arr) {
                                      start.z - end.z);
         makeLink(start, end, DOTSIZE, ELEVATION, LINEWIDTH);
     });
-    console.log(arr[0][0]);
+    console.log('michael cnso', arr);
     if (arr) {
         var root = latLongToVector3(arr[0][0][0], arr[0][0][1], 0.5, 0);
         rootMesh = mark(root.x, root.y, root.z, 0.05);
