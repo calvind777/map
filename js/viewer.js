@@ -30,8 +30,8 @@ function init() {
     var canvas = document.getElementById("container");
     canvas.setAttribute("style","width:90%");
     canvas.setAttribute("style","height:90%");
-    WIDTH = window.innerWidth;
-    HEIGHT = window.innerHeight * 2/3;
+    WIDTH = window.innerWidth * 2/3;
+    HEIGHT = window.innerHeight;
 
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(30, WIDTH / HEIGHT, 0.0001, 1000);
