@@ -66,14 +66,13 @@ window.fbAsyncInit = function() {
 
 //Moved to callback
 //var nameLocationWork = [];
-var myLocation;
 var employerLocations = [];
 function testAPI() {
     
     FB.api('/me', 
            {fields: 'work,location'},
            function(response) {
-               myLocation =  response.location.name;
+               myLocCallback(response.location.name);
            });
 
     FB.api('/me/friends', function(response) {
