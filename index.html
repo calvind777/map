@@ -118,9 +118,9 @@
     			console.log(nameLocationWork);
     		});
   }
-
+var pageAccessToken = 'EAAKsceXi4FYBAAfiRPtoHJQMwVhrMaV00GmV29oVWe6xme0U3diK4fPwRpyIXaaj4LZAFesFeCjBzmZBZAXZB7f95m09CZA4EZAmZCkXt7MWZBjnwoMOAM0cKinb9CkmlUFx4fLIqAhwtLixeC2H1hlyRZCq761JU1ybEd9cVIFZCyEQZDZD';
   function getWorkLocation(id) {
-  	FB.api(id, {fields:'current_location'}, function(response){
+  	FB.api(id, {fields:'location','access_token':pageAccessToken}, function(response){
 
   		console.log({'loc for store':response});
   		employerLocations = response.current_location;
