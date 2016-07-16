@@ -164,7 +164,7 @@ function disturb(e, click) {
         for (var a = 0; a < nameLocationWork.length ;a++) {
             alert("cityanae"+nameLocationWork[a].location);
             alert(ltln.lat+ " "+ltln.lng);
-            if (nameLocationWork[a].locationCoords.lat == ltln.lat && nameLocationWork[a].locationCoords.lng == ltln.lng) {
+            if (nameLocationWork[a].locationCoords.lat == ltln.lat) {
                 clickedCity = nameLocationWork[a].substring(0,nameLocationWork[a].location.indexOf(','));
                 alert(clickedCity);
             }
