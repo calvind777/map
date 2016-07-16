@@ -85,7 +85,7 @@ function init() {
             rot = !rot; 
         }
     }
-    
+    renderer.domElement.setAttribute.style = "border: 7px solid #524e4e";
     canvas.appendChild(renderer.domElement);    
 
     ///////////// get data
@@ -310,7 +310,7 @@ function vector3ToLatLong(v, radius) {
     var lat = phi*180/Math.PI;
     var lon = theta*180/Math.PI + 180;
     
-    return new google.maps.LatLng({'lat':lat,'lng':lng});
+    return new {'lat':lat,'lng':lon};
 }
 
 function animate() {
