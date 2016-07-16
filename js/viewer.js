@@ -61,7 +61,7 @@ function init() {
         bumpScale: 0.02,
         specularMap: alpha,
         specular: new THREE.Color("#111111"),
-        wireframe: true
+//        wireframe: true
     });
     earth = new THREE.Mesh(geom, mat);
 
