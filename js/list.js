@@ -1266,6 +1266,7 @@ function populateData(city) {
 $( document ).ready(function() {
     $("#template").hide();
     populateData("San Carlos");
+    $('.cd-btn').click();
     //open the lateral panel
     $('.cd-btn').on('click', function(event){
       event.preventDefault();
