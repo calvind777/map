@@ -88,6 +88,8 @@ function testAPI() {
 
     });
 
+    setTimeout(function(){console.log(nameLocationWork);}, 2000);
+
 }
 var fail = 0;
 var tot = 0;
@@ -118,12 +120,11 @@ function getWork(id,personName) {
             }
             nameLocationWork.push({'name':name, 'location':response.location.name, 'work':employers});
             // console.log(tot);
-            console.log(nameLocationWork);
             // for (var c = 0; c < employerLocations.length;c++) {
             // 	employers[c].location = employerLocations[c];
             // }
 	    			// employerLocations = [];
     		}
-    		console.log(fail);
+    		// console.log(fail);
     });
 }
