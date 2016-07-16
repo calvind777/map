@@ -91,11 +91,12 @@
     		FB.api(id, {fields: 'work,location'}, function(response) {
     			var employers = [];
     			console.log({'MY FRIEND':response});
-    			for (var b = 0; b < response.work.length;b++) {
-    				var employer = response.work[b].employer.name;
-    				employers.push(employer);
+    			if (response.work.length != null) {
+	    			for (var b = 0; b < response.work.length;b++) {
+	    				var employer = response.work[b].employer.name;
+	    				employers.push(employer);
+	    			}
     			}
-
 
     			nameLocationWork.push({'name':name, 'location':response.location.name, 'work':employers});
     			console.log(nameLocationWork);
