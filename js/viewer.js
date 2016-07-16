@@ -162,6 +162,8 @@ function disturb(e, click) {
         var ltln = vector3ToLatLong(vector3, 0.5);
         console.log(5);
         for (var a = 0; a < nameLocationWork.length ;a++) {
+            alert("cityanae"+nameLocationWork[a].location);
+            alert(ltln.lat+ " "+ltln.lng);
             if (nameLocationWork[a].locationCoords.lat == ltln.lat && nameLocationWork[a].locationCoords.lng == ltln.lng) {
                 clickedCity = nameLocationWork[a].substring(0,nameLocationWork[a].location.indexOf(','));
                 alert(clickedCity);
@@ -309,7 +311,7 @@ function vector3ToLatLong(v, radius) {
     var lat = phi*180/Math.PI;
     var lon = theta*180/Math.PI + 180;
     
-    return new {'lat':lat,'lng':lon};
+    return  {'lat':lat,'lng':lon};
 }
 
 function animate() {
