@@ -99,36 +99,38 @@
   }
 
   function getWork(id,name) {
-  	FB.api(id, {fields: 'work,location'}, function(response) {
-    			
+  	FB.api(id, {fields: 'work,location,name'}, function(response) {
+    			var name = response.name;
     			var employers = [];
     			//console.log({'MY FRIEND':response});
     			if (response.work != null) {
 	    			for (var b = 0; b < response.work.length;b++) {
 	    				var employer = response.work[b].employer.name;
-	    				employers.push({'name':employer});
-	    				getWorkLocation(response.work[b].employer.id);
-
-	    				
-	    				//employerLocations = "";
-	    				//alert("employer data for "+id);
+	    				(function(index){
+	    					getWorkLocation(response.work[b].employer.id,function(location){
+		    					employers.push({'name':employer, 'location': location});
+		    					if(b === response.work.length - 1){ // done
+					    			nameLocationWork.push({'name':name, 'location':response.location.name, 'work':employers});
+					    			console.log(nameLocationWork);
+		    					}
+		    				});
+	    				})(i);
 	    			}
-	    			for (var c = 0; c < employerLocations.length;c++) {
-	    				employers[c].location = employerLocations[c];
-	    			}
-	    			employerLocations = [];
+	    			// for (var c = 0; c < employerLocations.length;c++) {
+	    			// 	employers[c].location = employerLocations[c];
+	    			// }
+	    			// employerLocations = [];
     			}
 
-    			nameLocationWork.push({'name':name, 'location':response.location.name, 'work':employers});
-    			console.log(nameLocationWork);
     		});
   }
 var pageAccessToken = 'EAAKsceXi4FYBAAfiRPtoHJQMwVhrMaV00GmV29oVWe6xme0U3diK4fPwRpyIXaaj4LZAFesFeCjBzmZBZAXZB7f95m09CZA4EZAmZCkXt7MWZBjnwoMOAM0cKinb9CkmlUFx4fLIqAhwtLixeC2H1hlyRZCq761JU1ybEd9cVIFZCyEQZDZD';
-  function getWorkLocation(id) {
+  function getWorkLocation(id, callback) {
   	FB.api(id, {fields:'location','access_token':pageAccessToken}, function(response){
 
   		console.log({'loc for store':response});
-  		employerLocations.push(response.location);
+  		callback({location:response.location});
+  		//employerLocations.push({'name':name,'location':response.location});
 
   	});
   }
