@@ -1277,13 +1277,15 @@ $( document ).ready(function() {
         event.preventDefault();
       }
       
-      $('#container').on('click', function(event){
-         if (isClicked) {
-         alert(5);
-         }});
+      
       
 
-      })
+      });
+   
+    $('#container').on('click', function(event){
+          
+         alert(6);
+      });
       
     $("#listButton").click();
     $("#map").hide();
