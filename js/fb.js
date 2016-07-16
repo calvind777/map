@@ -101,6 +101,7 @@ function testAPI() {
                 geocodeAddress(geocoder, e.location, function(success, location) {
                     if(success){
                         arcs.push([myLocLatLng, [location.lat(), location.lng()]]);
+                        e.locationCoords = [location.lat(), location.lng()];
                     }
                 });
                 console.log("index; ", i);
