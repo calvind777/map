@@ -211,7 +211,7 @@ function renderHistory(arr) {
         makeLink(start, end, DOTSIZE, ELEVATION, LINEWIDTH);
     });
     var root = latLongToVector3(arr[0][0].locationCoords[0], arr[0][0].locationCoords[1], 0.5, 0);
-    rootMesh = mark(root.x, root.y, root.z, 0.2);
+    rootMesh = mark(root.x, root.y, root.z, 0.06);
     rootMesh.material.color = new THREE.Color(ROOTCOLOR);
     rootMesh.material.transparent = false;
     rootMesh.material.opacity = 1;
@@ -243,11 +243,10 @@ function renderData(arr) {
     });
     if (arr.length != 0) {
         var root = latLongToVector3(arr[0][0][0], arr[0][0][1], 0.5, 0);
-        rootMesh = mark(root.x, root.y, root.z, 0.05);
+        rootMesh = mark(root.x, root.y, root.z, 0.06);
         rootMesh.material.color = new THREE.Color(ROOTCOLOR);
         rootMesh.material.transparent = false;
         rootMesh.material.opacity = 1;
-        root
     }
     balls.push(rootMesh);
     addToGroup();

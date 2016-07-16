@@ -1289,4 +1289,5 @@ $( document ).ready(function() {
       
     $("#listButton").click();
     $("#map").hide();
+    $("#container").children().css("border","7px solid #524e4e");
 });
