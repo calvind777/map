@@ -1277,9 +1277,15 @@ $( document ).ready(function() {
         $('.cd-panel').removeClass('is-visible');
         event.preventDefault();
       }
-      if (isClicked) {
+      
+      $('#container').on('click', function(event){
+         if (isClicked) {
          alert(5);
-      }
+         }});
+      
+
+      })
+      
     });
     
     $("#listButton").click();

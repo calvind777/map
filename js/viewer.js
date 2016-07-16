@@ -11,10 +11,10 @@ var LINECOLOR = 0xaaffff;
 var MARKCOLOR = 0xffffff;
 var ROOTCOLOR = 0x4488ff;
 var HIGHLIGHT = 0x0000ff;
-var DOTSIZE = 0.04;
+var DOTSIZE = 0.02;
 var ELEVATION = 2;
 var LINEWIDTH = 1;
-var OFFSET = 40;
+var OFFSET = 15;
 var controls;
 
 var rot = true;
@@ -35,7 +35,7 @@ function init() {
 
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(30, WIDTH / HEIGHT, 0.0001, 1000);
-    camera.position.z = 3;
+    camera.position.z = 2.5;
     scene.add(camera);
 
     // ////////// LIGHT
@@ -61,7 +61,7 @@ function init() {
         bumpScale: 0.02,
         specularMap: alpha,
         specular: new THREE.Color("#111111"),
-        wireframe: true
+        wireframe: true,
     });
     earth = new THREE.Mesh(geom, mat);
 
@@ -149,13 +149,31 @@ function disturb(e, click) {
                 else
                     b.material.color = w;
             });
-        }
         mesh.material.color = y;
+        var vector3 = mesh.position;
+        var ltln = vector3ToLatLong(vector3, 0.5);
+
+        }
+
+        
         
         
         rot = false;
     }
 }
+
+function getCity(geocoder,latlon,callback) {
+    geocoder.geocode({'location': latlon}, function(results, status) {
+        if (status === google.maps.GeocoderStatus.OK) {
+            callback(true, results[0]);
+        } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+            callback(false, {});
+        }
+    });
+}
+
+
 
 function setData(data) {
     clearData();
@@ -221,7 +239,13 @@ function renderData(arr) {
 
 function makeLink(loc1, loc2, dotsize, elevation, width) {
     balls.push(mark(loc2.x, loc2.y, loc2.z, dotsize));
-    lines.push(draw(loc1, loc2, elevation, width));
+    for (var k = 0; k < Math.random() * 5; k++) {
+        lines.push(draw(loc1, loc2, elevation * Math.random(), width));
+        lines.push(draw(loc1, loc2, elevation * Math.random(), width));
+        lines.push(draw(loc1, loc2, elevation * Math.random(), width));
+        lines.push(draw(loc1, loc2, elevation * Math.random(), width));
+        lines.push(draw(loc1, loc2, elevation * Math.random(), width));
+    }
 }
 
 function draw(v1, v2, elevation, width) {
@@ -236,10 +260,13 @@ function draw(v1, v2, elevation, width) {
 }
 
 function mark(x, y, z, r) {
-    var geom = new THREE.SphereGeometry(r, 20, 20);
-    var mat = new THREE.MeshPhongMaterial({
+    var geom = new THREE.SphereGeometry(r * Math.random() , 20, 20);
+    var mat = new THREE.MeshLambertMaterial({
         color: MARKCOLOR,
-        shininess: 200
+        transparent: true,
+        opacity: 0.3,
+        emissive: new THREE.Color("#ffffff")
+        
     });
     var m = new THREE.Mesh(geom, mat);
     m.position.set(x, y, z);
@@ -269,7 +296,7 @@ function vector3ToLatLong(v, radius) {
     var lat = phi*180/Math.PI;
     var lon = theta*180/Math.PI + 180;
     
-    return [lat, lon];
+    return new google.maps.LatLng({'lat':lat,'lng':lng});
 }
 
 function animate() {
