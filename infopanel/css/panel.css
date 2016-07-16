@@ -7,13 +7,14 @@ html, body {
   height: 100%;
 }
 
-h1 {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
+.table-margin {
+  margin-left:10px;
+  color: black;
+}
+
+.table-margin-extra {
+  margin-left:30px;
+  color: black;
 }
 
 .cd-panel {
@@ -130,7 +131,7 @@ h1 {
 .cd-panel-header {
   position: fixed;
   width: 90%;
-  height: 50px;
+  height: 100px;
   line-height: 50px;
   background: rgba(255, 255, 255, 0.96);
   z-index: 2;
@@ -144,8 +145,11 @@ h1 {
   color: #89ba2c;
   padding-left: 5%;
 }
-.from-right .cd-panel-header, .from-left .cd-panel-header {
+.from-right, .from-left {
   top: -50px;
+}
+.cd-panel-header {
+  top: -100px;
 }
 .from-right .cd-panel-header {
   right: 0;
@@ -166,7 +170,7 @@ h1 {
 }
 @media only screen and (min-width: 1170px) {
   .cd-panel-header {
-    width: 50%;
+    width: 30%;
   }
 }
 
@@ -285,7 +289,7 @@ h1 {
 }
 @media only screen and (min-width: 1170px) {
   .cd-panel-container {
-    width: 50%;
+    width: 30%;
   }
 }
 
@@ -295,7 +299,7 @@ h1 {
   left: 0;
   width: 100%;
   height: 100%;
-  padding: 70px 5%;
+  padding: 120px 5%;
   overflow: auto;
   /* smooth scrolling on touch devices */
   -webkit-overflow-scrolling: touch;
@@ -315,4 +319,8 @@ h1 {
     font-size: 1rem;
     line-height: 1.6;
   }
+}
+
+#city-img {
+  margin-top: 5px;
 }

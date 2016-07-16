@@ -5,10 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700|Droid+Serif' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="css/list.css"> <!-- List style -->
   <link rel="stylesheet" href="css/panel.css"> <!-- Slide in panel style -->
-    
+  <script src="https://use.fontawesome.com/6c48f18e11.js"></script>
+
   <title>Map</title>
 </head>
 <body>
@@ -20,11 +22,20 @@
 
   <div class="cd-panel from-right">
     <header class="cd-panel-header">
-      <h1>San Francisco</h1>
-      <a href="#0" class="cd-panel-close">Close</a>
+      <table>
+        <tr>
+          <td> <img id="city-img" src="img/sf.png" height="80" width="80""> <td>
+          <td>
+            <h1 id="city-name">San Francisco</h1>
+          </td>
+          <td>
+            <a href="#0" class="cd-panel-close fa fa-chevron-right"></a>
+          </td>
+        <tr>
+      </table>
     </header>
 
-    <div class="cd-panel-container">
+    <div class="cd-panel-container drop-target">
       <div class="cd-panel-content">
         <a href="#0" class="cd-panel-close">Close</a>
         <div id="users">
@@ -36,10 +47,16 @@
             <li id="template" data-id="0">
               <table>
                 <tr>
-                  <td> <img src="" height="40" width="40" class="image"> <td>
-                  <td>
+                  <td> <img src="" height="40" width="40" class="image" style="margin-right:5px"> </td>
+                  <td class = "table-margin">
                     <h3 class="name"></h3>
                     <p class="company"></p>
+                  </td>
+                  <td>
+                    <a href="your link here"> <i class="fa fa-facebook-square fa-2x table-margin-extra"></i></a>
+                    <a href="your link here"> <i class="fa fa-linkedin-square fa-2x table-margin"></i></a>
+                    <a href="your link here"> <i class="fa fa-twitter-square fa-2x table-margin"></i></a>
+                    <a href="your link here"> <i class="fa fa-envelope fa-2x table-margin"></i></a>
                   </td>
                 <tr>
               </table>
