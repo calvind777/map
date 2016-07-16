@@ -141,7 +141,7 @@ function disturb(e, click) {
         console.log(intersects);
         var mesh = intersects[0].object;
         isClicked = true;
-        if (mesh.material.color.b !== y) {
+        if (mesh.material.color.b !== y) {4
             balls.forEach(function(b) {
                 if (b.position.x == rootMesh.position.x &&
                     b.position.y == rootMesh.position.y &&
@@ -151,7 +151,12 @@ function disturb(e, click) {
                     b.material.color = w;
             });
             mesh.material.color = y;
-            var vector3 = mesh.position;
+            
+        }
+
+
+
+        var vector3 = mesh.position;
             var ltln = vector3ToLatLong(vector3, 0.5);
             alert(ltln);
             for (var a = 0; a < nameLocationWork.length ;a++) {
@@ -160,7 +165,6 @@ function disturb(e, click) {
                     alert(clickedCity);
                 }
             }
-        }
         rot = false;
     }
 }
