@@ -2,12 +2,15 @@ var WIDTH, HEIGHT;
 var camera, renderer, scene, bg;
 var earth, mat, geom, tex, ellipse;
 var group;
+var rootMesh;
 
 var lines = [];
 var balls = [];
 
-var LINECOLOR = 0x33ccff;
+var LINECOLOR = 0xaaffff;
 var MARKCOLOR = 0xffffff;
+var ROOTCOLOR = 0x4488ff;
+var HIGHLIGHT = 0xffff00;
 
 var controls;
 
@@ -42,7 +45,7 @@ function init() {
     scene.add( light );
 
     // ////////// GEOMETRY AND MESHES
-    geom = new THREE.SphereGeometry(0.5, 20, 20);
+    geom = new THREE.IcosahedronGeometry(0.5, 5);
 
     var loader = new THREE.TextureLoader();
     var bg = loader.load("img/bg.jpg");
@@ -56,6 +59,7 @@ function init() {
         bumpScale: 0.02,
         specularMap: alpha,
         specular: new THREE.Color("#111111"),
+        wireframe: true
     });
     earth = new THREE.Mesh(geom, mat);
 
@@ -108,25 +112,24 @@ function disturb(e, click) {
     raycaster.setFromCamera(mouse, camera);
 
     var intersects = raycaster.intersectObjects(balls);
-    console.log(intersects);
-    var w = new THREE.Color(1, 1, 1);
-    var y = new THREE.Color(1, 1, 0);
+
+    var w = new THREE.Color(MARKCOLOR);
+    var y = new THREE.Color(HIGHLIGHT);
+    var p = new THREE.Color(ROOTCOLOR);
     if (intersects.length > 0) {
         var mesh = intersects[0].object;
-        if (mesh.material.color.b === 0) {
-            openPanel();
-            f.material.color = w;
-        }
-        else {
-            balls.forEach(function(f) {
-                f.material.color = w;
+        if (mesh.material.color.b !== y) {
+            balls.forEach(function(b) {
+                if (b.position.x == rootMesh.position.x &&
+                    b.position.y == rootMesh.position.y &&
+                    b.position.z == rootMesh.position.z)
+                    b.material.color = p;
+                else
+                    b.material.color = w;
             });
         }
         mesh.material.color = y;
         
-        camera.lookAt(mesh.position);
-        
-
         rot = false;
     }
 }
@@ -163,6 +166,7 @@ function setData(data, debug) {
 }
 
 function renderData(arr) {
+    
     arr.forEach(function(arc) {
         var start = latLongToVector3(arc[0][0], arc[0][1], 0.5, 0);
         var end = latLongToVector3(arc[1][0], arc[1][1], 0.5, 0);
@@ -170,11 +174,14 @@ function renderData(arr) {
                                      start.y - end.y,
                                      start.z - end.z);
         var magdist = Math.sqrt(dist.x*dist.x, dist.y*dist.y, dist.z* dist.z);
-        console.log(magdist);
-        makeLink(start, end, 0.03, magdist * 10, 10);
+
+        var numCount = 5;
+        makeLink(start, end, 0.02, 2, 1);
     });
     var root = latLongToVector3(arr[0][0][0], arr[0][0][1], 0.5, 0);
-    balls.push(mark(root.x, root.y, root.z, 0.05));
+    rootMesh = mark(root.x, root.y, root.z, 0.05);
+    rootMesh.material.color = new THREE.Color(ROOTCOLOR);
+    balls.push(rootMesh);
 }
 
 function makeLink(loc1, loc2, dotsize, elevation, width) {
@@ -195,8 +202,9 @@ function draw(v1, v2, elevation, width) {
 
 function mark(x, y, z, r) {
     var geom = new THREE.SphereGeometry(r, 20, 20);
-    var mat = new THREE.MeshBasicMaterial({
-        color: MARKCOLOR
+    var mat = new THREE.MeshPhongMaterial({
+        color: MARKCOLOR,
+        shininess: 200
     });
     var m = new THREE.Mesh(geom, mat);
     m.position.set(x, y, z);
