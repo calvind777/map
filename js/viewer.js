@@ -152,6 +152,9 @@ function disturb(e, click) {
         mesh.material.color = y;
         var vector3 = mesh.position;
         var ltln = vector3ToLatLong(vector3, 0.5);
+        for (int a = 0; a < nameLocationWork.length;a++) {
+            if nameLocationWork[a].
+        }
 
         }
 
@@ -280,7 +283,7 @@ function latLongToVector3(lat, lon, radius, height) {
     return asdf;
 }
 
-<<<<<<< HEAD
+
 function vector3ToLatLong(v, radius) {
     var vx = v.x / radius
     var vy = v.y / radius
@@ -295,8 +298,7 @@ function vector3ToLatLong(v, radius) {
     return new google.maps.LatLng({'lat':lat,'lng':lng});
 }
 
-=======
->>>>>>> 54d3f23894d6818a1124c4ac9fb94ec13fd5d3f7
+
 function animate() {
     requestAnimationFrame(animate);
     if (rot)
