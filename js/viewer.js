@@ -241,6 +241,9 @@ function renderData(arr) {
         var root = latLongToVector3(arr[0][0][0], arr[0][0][1], 0.5, 0);
         rootMesh = mark(root.x, root.y, root.z, 0.05);
         rootMesh.material.color = new THREE.Color(ROOTCOLOR);
+        rootMesh.material.transparent = false;
+        rootMesh.material.opacity = 1;
+        root
     }
     balls.push(rootMesh);
     addToGroup();
