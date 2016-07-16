@@ -206,7 +206,7 @@ function renderData(arr) {
                                      start.y - end.y,
                                      start.z - end.z);
         makeLink(start, end, DOTSIZE, ELEVATION, LINEWIDTH);
-    });e
+    });
     console.log(arr);
     var root = latLongToVector3(arr[0][0][0], arr[0][0][1], 0.5, 0);
     rootMesh = mark(root.x, root.y, root.z, 0.05);
