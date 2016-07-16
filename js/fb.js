@@ -102,7 +102,7 @@ function getWork(id,personName) {
                 
                 
                 var employer = response.work[b].employer.name;
-                console.log(response.work[b]);
+                // console.log(response.work[b]);
                 if (response.work[b].location == null) {
                     fail = fail + 1;
                     employers.push({'name':employer, 'location': null});
@@ -112,12 +112,12 @@ function getWork(id,personName) {
                 }
                 tot = tot+1;
 
-                console.log(employers);
+                // console.log(employers);
                 
                 
             }
             nameLocationWork.push({'name':name, 'location':response.location.name, 'work':employers});
-            console.log(tot);
+            // console.log(tot);
             console.log(nameLocationWork);
             // for (var c = 0; c < employerLocations.length;c++) {
             // 	employers[c].location = employerLocations[c];
