@@ -90,12 +90,12 @@ function init() {
 
     ///////////// get data
     //TODO: put actual data here
-    var locs = [
-        [[1, 100],[40, 80]],
-        [[1, 100],[90, 90]],
-        [[1, 100],[71, 40]]
-        
-    ];
+    var sf = [37.774929, -122.41941550000001];
+    var locs = [];
+    for (var k = 0; k < 20; k++) {
+        locs.push([sf,[Math.random() * 360 - 180, Math.random() * 360 - 180]]);
+    }
+    setData(locs);
 
     addToGroup();
 
@@ -196,8 +196,6 @@ function makeLink(loc1, loc2, dotsize, elevation, width) {
 
 function draw(v1, v2, elevation, width) {
     var midpoint = new THREE.Vector3((v1.x + v2.x) / 2, (v1.y + v2.y) / 2, (v1.z + v2.z) / 2);
-    if (v1.x == v2.x && v1.y == v2.y && v1.z == v2.z)
-        elevation = 1;
     var scaled = new THREE.Vector3(midpoint.x * elevation, midpoint.y * elevation, midpoint.z * elevation);
     var curveQuad = new THREE.QuadraticBezierCurve3(v1, scaled, v2);
     var cp = new THREE.CurvePath();
