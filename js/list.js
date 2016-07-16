@@ -1282,7 +1282,7 @@ $( document ).ready(function() {
 
       });
    
-    $('#container').on('click', function(event){
+    $("#container").on('click', function(event){
           
          alert(6);
       });
