@@ -142,7 +142,7 @@ function disturb(e, click) {
         console.log(intersects);
         var mesh = intersects[0].object;
         isClicked = true;
-
+        $('.cd-panel').addClass('is-visible');
         if (mesh.material.color.b !== y) {
             balls.forEach(function(b) {
                 if (b.position.x == rootMesh.position.x &&
