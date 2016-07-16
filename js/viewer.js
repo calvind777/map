@@ -239,7 +239,7 @@ function renderData(arr) {
 
 function makeLink(loc1, loc2, dotsize, elevation, width) {
     balls.push(mark(loc2.x, loc2.y, loc2.z, dotsize));
-    lines.push(draw(loc1, loc2, elevation, width));
+    lines.push(draw(loc1, loc2, elevation * Math.random(), width));
     lines.push(draw(loc1, loc2, elevation * Math.random(), width));
     lines.push(draw(loc1, loc2, elevation * Math.random(), width));
     lines.push(draw(loc1, loc2, elevation * Math.random(), width));
@@ -258,7 +258,7 @@ function draw(v1, v2, elevation, width) {
 }
 
 function mark(x, y, z, r) {
-    var geom = new THREE.SphereGeometry(r, 20, 20);
+    var geom = new THREE.SphereGeometry(r * Math.random(), 20, 20);
     var mat = new THREE.MeshLambertMaterial({
         color: MARKCOLOR,
         shininess: 200,
