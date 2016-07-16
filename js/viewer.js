@@ -196,6 +196,8 @@ function makeLink(loc1, loc2, dotsize, elevation, width) {
 
 function draw(v1, v2, elevation, width) {
     var midpoint = new THREE.Vector3((v1.x + v2.x) / 2, (v1.y + v2.y) / 2, (v1.z + v2.z) / 2);
+    if (v1.x == v2.x && v1.y == v2.y && v1.z == v2.z)
+        elevation = 0;
     var scaled = new THREE.Vector3(midpoint.x * elevation, midpoint.y * elevation, midpoint.z * elevation);
     var curveQuad = new THREE.QuadraticBezierCurve3(v1, scaled, v2);
     var cp = new THREE.CurvePath();
