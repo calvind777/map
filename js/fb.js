@@ -98,16 +98,19 @@ function testAPI() {
         });
         setTimeout(function(){}, 1200);
         nameLocationWork.forEach(function(e, i) {
-            geocodeAddress(geocoder, e.location, function(success, location) {
-                if(success){
-                    arcs.push([myLocLatLng, [location.lat(), location.lng()]]);
+            setTimeout(function(){
+                geocodeAddress(geocoder, e.location, function(success, location) {
+                    if(success){
+                        arcs.push([myLocLatLng, [location.lat(), location.lng()]]);
+                    }
+                });
+                console.log("index; ", i);
+                if (i === nameLocationWork.length - 1) {
+                    console.log("arcs", arcs);
+                    setData(arcs, false);
                 }
-            });
-            console.log("index; ", i);
-            setTimeout(function(){}, 1200);
+            }, 1200*i);
         });
-        console.log("arcs", arcs);
-        setData(arcs, false);
         console.log(nameLocationWork);
     }, 2000);
 
