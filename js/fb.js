@@ -97,12 +97,13 @@ function testAPI() {
             }
         });
         setTimeout(function(){}, 1200);
-        nameLocationWork.forEach(function(e) {
+        nameLocationWork.forEach(function(e, i) {
             geocodeAddress(geocoder, e.location, function(success, location) {
                 if(success){
                     arcs.push([myLocLatLng, [location.lat(), location.lng()]]);
                 }
             });
+            console.log("index; ", i);
             setTimeout(function(){}, 1200);
         });
         console.log("arcs", arcs);
