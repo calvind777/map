@@ -98,6 +98,7 @@
 
   }
 var fail = 0;
+var tot = 0;
   function getWork(id,personName) {
   	FB.api(id, {fields: 'work,location,name'}, function(response) {
     			var name = response.name;
@@ -117,11 +118,14 @@ var fail = 0;
 	    					else {
 		    				employers.push({'name':employer, 'location': response.work[b].location.name});
 		    				}
+		    				tot = tot+1;
+
 		    				console.log(employers);
-		    			
+		    				
 	    				
 	    			}
 	    			nameLocationWork.push({'name':name, 'location':response.location.name, 'work':employers});
+	    			console.log(tot);
 	    			console.log(nameLocationWork);
 	    			// for (var c = 0; c < employerLocations.length;c++) {
 	    			// 	employers[c].location = employerLocations[c];
