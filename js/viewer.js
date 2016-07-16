@@ -142,6 +142,8 @@ function disturb(e, click) {
         console.log(intersects);
         var mesh = intersects[0].object;
         isClicked = true;
+        userList = new List('users', options);
+        populateData("San Francisco");
         $('.cd-panel').addClass('is-visible');
         if (mesh.material.color.b !== y) {
             balls.forEach(function(b) {
