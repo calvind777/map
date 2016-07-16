@@ -8,7 +8,6 @@ var options = {
 };
 
 var userList = new List('users', options);
-
 /* Unused data */
 /*
 {  
@@ -1286,8 +1285,6 @@ $( document ).ready(function() {
 
       })
       
-    });
-    
     $("#listButton").click();
     $("#map").hide();
 });
