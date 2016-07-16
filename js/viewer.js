@@ -263,7 +263,6 @@ function mark(x, y, z, r) {
     var geom = new THREE.SphereGeometry(r * Math.random() , 20, 20);
     var mat = new THREE.MeshLambertMaterial({
         color: MARKCOLOR,
-        shininess: 200,
         transparent: true,
         opacity: 0.3,
         emissive: new THREE.Color("#ffffff")
