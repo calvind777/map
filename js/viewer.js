@@ -284,7 +284,6 @@ function latLongToVector3(lat, lon, radius, height) {
     return asdf;
 }
 
-<<<<<<< HEAD
 function vector3ToLatLong(v, radius) {
     var vx = v.x / radius
     var vy = v.y / radius
@@ -299,8 +298,6 @@ function vector3ToLatLong(v, radius) {
     return new google.maps.LatLng({'lat':lat,'lng':lng});
 }
 
-=======
->>>>>>> 54d3f23894d6818a1124c4ac9fb94ec13fd5d3f7
 function animate() {
     requestAnimationFrame(animate);
     if (rot)
