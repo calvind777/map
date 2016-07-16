@@ -85,7 +85,7 @@ function init() {
             rot = !rot; 
         }
     }
-    render.domElement.setAttribute.style = "border: 7px solid #524e4e";
+    renderer.domElement.setAttribute.style = "border: 7px solid #524e4e";
     canvas.appendChild(renderer.domElement);    
 
     ///////////// get data
