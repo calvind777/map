@@ -96,16 +96,16 @@ function init() {
         locs.push([sf,[Math.random() * 360 - 180, Math.random() * 360 - 180]]);
     }
 
-    var works =  {
-        work: [
-            {locationCoords: [Math.random(), Math.random()]},
-            {locationCoords: [Math.random(), Math.random()]},
-            {locationCoords: [Math.random(), Math.random()]},
-            {locationCoords: [Math.random(), Math.random()]},
-            {locationCoords: [Math.random(), Math.random()]}
-        ]};
+    // var works =  {
+    //     work: [
+    //         {locationCoords: [Math.random(), Math.random()]},
+    //         {locationCoords: [Math.random(), Math.random()]},
+    //         {locationCoords: [Math.random(), Math.random()]},
+    //         {locationCoords: [Math.random(), Math.random()]},
+    //         {locationCoords: [Math.random(), Math.random()]}
+    //     ]};
 
-    setData(works);
+    setData(locs);
 
     addToGroup();
 
@@ -200,8 +200,8 @@ function clearData() {
 
 function renderData(arr) {
     arr.forEach(function(arc, i) {
-        var start = latLongToVector3(arc[i][0][0], arc[i][0][1], 0.5, 0);
-        var end = latLongToVector3(arc[i][1][0], arc[i][1][1], 0.5, 0);
+        var start = latLongToVector3(arc[0][0], arc[0][1], 0.5, 0);
+        var end = latLongToVector3(arc[1][0], arc[1][1], 0.5, 0);
         var dist = new THREE.Vector3(start.x - end.x,
                                      start.y - end.y,
                                      start.z - end.z);
