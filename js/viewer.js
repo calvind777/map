@@ -11,10 +11,10 @@ var LINECOLOR = 0xaaffff;
 var MARKCOLOR = 0xffffff;
 var ROOTCOLOR = 0x4488ff;
 var HIGHLIGHT = 0x0000ff;
-var DOTSIZE = 0.02;
+var DOTSIZE = 0.04;
 var ELEVATION = 2;
 var LINEWIDTH = 1;
-var OFFSET = 40;
+var OFFSET = 15;
 var controls;
 
 var rot = true;
@@ -35,7 +35,7 @@ function init() {
 
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(30, WIDTH / HEIGHT, 0.0001, 1000);
-    camera.position.z = 2.5;
+    camera.position.z = 3;
     scene.add(camera);
 
     // ////////// LIGHT
@@ -241,8 +241,9 @@ function mark(x, y, z, r) {
         color: MARKCOLOR,
         shininess: 200
     });
-    var me = new THREE.Mesh(geom, mat);
-    return me;
+    var m = new THREE.Mesh(geom, mat);
+    m.position.set(x, y, z);
+    return m;
 }
 
 function latLongToVector3(lat, lon, radius, height) {
@@ -255,20 +256,6 @@ function latLongToVector3(lat, lon, radius, height) {
     
     var asdf =  new THREE.Vector3(x,y,z);
     return asdf;
-}
-
-function vector3ToLatLong(v, radius) {
-    var vx = v.x / radius
-    var vy = v.y / radius
-    var vz = v.z / radius
-
-    var phi = Math.atan2(vz, Math.sqrt(vx*vx + vy*vy));
-    var theta = Math.atan2(vy, vx);
-
-    var lat = phi*180/Math.PI;
-    var lon = theta*180/Math.PI + 180;
-    
-    return [lat, lon];
 }
 
 function animate() {
