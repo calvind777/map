@@ -131,6 +131,7 @@ function addToGroup() {
 }
 var isClicked = false;
 function disturb(e, click) {
+    alert(5);
     mouse.x = e.clientX / WIDTH * 2 - 1;
     mouse.y = e.clientY / HEIGHT * -2 + 1 + OFFSET;
     raycaster.setFromCamera(mouse, camera);
