@@ -22,8 +22,7 @@ function placeMarkersForFriends() {
             map: map,
             title: employment[0].name
           });
-        });
-      }
+      };
     }
   }
 }
