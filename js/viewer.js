@@ -237,9 +237,11 @@ function draw(v1, v2, elevation, width) {
 
 function mark(x, y, z, r) {
     var geom = new THREE.SphereGeometry(r, 20, 20);
-    var mat = new THREE.MeshPhongMaterial({
+    var mat = new THREE.MeshLambertMaterial({
         color: MARKCOLOR,
-        shininess: 200
+        shininess: 200,
+        transparent: true,
+        opacity: 0.3
     });
     var m = new THREE.Mesh(geom, mat);
     m.position.set(x, y, z);
