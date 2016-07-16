@@ -14,7 +14,7 @@ var HIGHLIGHT = 0x0000ff;
 var DOTSIZE = 0.04;
 var ELEVATION = 2;
 var LINEWIDTH = 1;
-var OFFSET = 15;
+var OFFSET = 40;
 var controls;
 
 var rot = true;
