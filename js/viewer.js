@@ -163,6 +163,7 @@ function disturb(e, click) {
         console.log(5);
         for (var a = 0; a < nameLocationWork.length ;a++) {
             alert("cityanae"+nameLocationWork[a].location);
+            alert(ltln.lat+ " "+ltln.lng);
             if (nameLocationWork[a].locationCoords.lat == ltln.lat && nameLocationWork[a].locationCoords.lng == ltln.lng) {
                 clickedCity = nameLocationWork[a].substring(0,nameLocationWork[a].location.indexOf(','));
                 alert(clickedCity);
