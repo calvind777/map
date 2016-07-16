@@ -73,7 +73,7 @@
   }(document, 'script', 'facebook-jssdk'));
 
   var nameLocationWork = [];
-
+  var employerLocations = "";
   function testAPI() {
     
     FB.api('/me', 
@@ -106,7 +106,10 @@
     			if (response.work != null) {
 	    			for (var b = 0; b < response.work.length;b++) {
 	    				var employer = response.work[b].employer.name;
-	    				employers.push(employer);
+	    				getWorkLocation(response.work[b].employer.id);
+
+	    				employers.push({'name':employer,'location':employerLocations});
+	    				employerLocations = "";
 	    				alert("employer data for "+id);
 	    			}
     			}
@@ -114,6 +117,15 @@
     			nameLocationWork.push({'name':name, 'location':response.location.name, 'work':employers});
     			console.log(nameLocationWork);
     		});
+  }
+
+  function getWorkLocation(id) {
+  	FB.api(id, {fields:'current_location'} function(response){
+
+  		console.log(response);
+  		employerLocations = response.current_location;
+
+  	})
   }
 </script>
 
