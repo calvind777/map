@@ -76,10 +76,15 @@
   function testAPI() {
     
     FB.api('/me', 
-    	{fields: 'friends,work,location'},
+    	{fields: 'work,location'},
     	function(response) {
       
       console.log(response);
+    });
+
+    FB.api('/me/friends', function(response) {
+    	console.log(response);
+
     });
 
   }
