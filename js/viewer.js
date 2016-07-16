@@ -3,7 +3,8 @@ var camera, renderer, scene, bg;
 var earth, mat, geom, tex, ellipse;
 var group = new THREE.Object3D();
 var rootMesh;
-
+var cities = ['San Francisco', 'San Carlos'];
+var t = 0;
 var lines = [];
 var balls = [];
 
@@ -164,11 +165,11 @@ function disturb(e, click) {
         var ltln = vector3ToLatLong(vector3, 0.5);
         console.log(5);
         for (var a = 0; a < nameLocationWork.length ;a++) {
-            alert("cityanae"+nameLocationWork[a].location);
-            alert(ltln.lat+ " "+ltln.lng);
+           // alert("cityanae"+nameLocationWork[a].location);
+           // alert(ltln.lat+ " "+ltln.lng);
             if (nameLocationWork[a].locationCoords.lat == ltln.lat) {
                 clickedCity = nameLocationWork[a].substring(0,nameLocationWork[a].location.indexOf(','));
-                alert(clickedCity);
+                //alert(clickedCity);
             }
         }
         rot = false;
