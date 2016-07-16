@@ -129,7 +129,7 @@ function addToGroup() {
 var isClicked = false;
 function disturb(e, click) {
     mouse.x = e.clientX / WIDTH * 2 - 1;
-    mouse.y = e.clientY / HEIGHT * -2 + 1 + OFFSET;
+    mouse.y = e.clientY / HEIGHT * -2 + 1;
     raycaster.setFromCamera(mouse, camera);
 
     var intersects = raycaster.intersectObjects(balls);
