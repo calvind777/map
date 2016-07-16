@@ -127,6 +127,7 @@ function addToGroup() {
     scene.add(group);
 }
 var isClicked = false;
+
 function disturb(e, click) {
     mouse.x = e.clientX / WIDTH * 2 - 1;
     mouse.y = e.clientY / HEIGHT * -2 + 1;
@@ -141,6 +142,7 @@ function disturb(e, click) {
         console.log(intersects);
         var mesh = intersects[0].object;
         isClicked = true;
+
         if (mesh.material.color.b !== y) {
             balls.forEach(function(b) {
                 if (b.position.x == rootMesh.position.x &&
@@ -151,11 +153,11 @@ function disturb(e, click) {
                     b.material.color = w;
             });
             mesh.material.color = y;
-            
+
         }
 
 
-        debugger;
+
         var vector3 = mesh.position;
         var ltln = vector3ToLatLong(vector3, 0.5);
         console.log(5);
