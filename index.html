@@ -98,7 +98,7 @@
 
   }
 
-  function getWork(id,name) {
+  function getWork(id,personName) {
   	FB.api(id, {fields: 'work,location,name'}, function(response) {
     			var name = response.name;
     			var employers = [];
@@ -107,10 +107,9 @@
 	    			for (var b = 0; b < response.work.length;b++) {
 	    				var employer = response.work[b].employer.name;
 	    				(function(index){
-	    					console.log(b);
-	    					getWorkLocation(response.work[b].employer.id,function(location){
-		    					employers.push({'name':employer, 'location': location});
-		    					//alert(b);
+	    					console.log(index);
+	    					getWorkLocation(response.work[index].employer.id,function(location){
+		    					employers.push({'name':response.work[index].employer.name, 'location': location.name});
 		    					if(b === response.work.length - 1){ // done
 					    			nameLocationWork.push({'name':name, 'location':response.location.name, 'work':employers});
 					    			console.log(nameLocationWork);
