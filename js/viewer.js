@@ -203,8 +203,9 @@ function renderHistory(arr) {
         makeLink(start, end, DOTSIZE, ELEVATION, LINEWIDTH);
     });
     var root = latLongToVector3(arr[0][0].locationCoords[0], arr[0][0].locationCoords[1], 0.5, 0);
-    rootMesh = mark(root.x, root.y, root.z, DOTSIZE * 1.5);
+    rootMesh = mark(root.x, root.y, root.z, 0.2);
     rootMesh.material.color = new THREE.Color(ROOTCOLOR);
+    rootMesh.material.transparent = false;
     balls.push(rootMesh);
     addToGroup();
 }
@@ -266,8 +267,8 @@ function mark(x, y, z, r) {
     var geom = new THREE.SphereGeometry(r * Math.random() , 20, 20);
     var mat = new THREE.MeshLambertMaterial({
         color: MARKCOLOR,
-        //transparent: true,
-        //opacity: 0.3,
+        transparent: true,
+        opacity: 0.3,
         // emissive: new THREE.Color("#ffffff")
         
     });
