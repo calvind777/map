@@ -75,7 +75,7 @@ function init() {
     canvas.appendChild(renderer.domElement);    
 
     ///////////// get data
-    var locs = getData([], true);
+    var locs = setData([], true);
 
     renderData(locs);
 
@@ -91,7 +91,7 @@ function init() {
     animate();
 }
 
-function getData(data, debug) {
+function setData(data, debug) {
     if (debug) {
         var cities = [
             [37.774929, -122.41941550000001],
