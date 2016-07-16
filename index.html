@@ -110,7 +110,7 @@ var fail = 0;
 	    					
 	    					var employer = response.work[b].employer.name;
 	    					console.log(response.work[b]);
-	    					if (response.work[b].location.name == null) {
+	    					if (response.work[b].location == null) {
 	    						fail = fail + 1;
 	    						employers.push({'name':employer, 'location': null});
 	    					}
