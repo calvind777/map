@@ -305,14 +305,19 @@ function vector3ToLatLong(v, radius) {
     var vy = v.y / radius
     var vz = v.z / radius
 
-    var phi = Math.atan2(vz, Math.sqrt(vx*vx + vy*vy));
-    var theta = Math.atan2(vy, vx);
+    //    var phi = // Math.atan2(vz, Math.sqrt(vx*vx + vy*vy));
+    var phi = Math.acos(vz/radius);
+    var theta = Math.atan(vx/vy);
+    // var theta = Math.atan2(vy, vx);
 
     var lat = phi*180/Math.PI;
     var lon = theta*180/Math.PI + 180;
     
     return  {'lat':lat,'lng':lon};
 }
+
+console.log(vector3ToLatLong(latLongToVector3(37.7749, -122.4194, 0.5, 0
+                                             ), 0.5))
 
 function animate() {
     requestAnimationFrame(animate);
