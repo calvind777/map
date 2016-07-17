@@ -1264,7 +1264,7 @@ function populateData(city) {
 
 $( document ).ready(function() {
     $("#template").hide();
-    populateData("San Carlos");
+    populateData("Shanghai");
     //open the lateral panel
     $('.cd-btn').on('click', function(event){
       event.preventDefault();
@@ -1277,14 +1277,15 @@ $( document ).ready(function() {
         event.preventDefault();
       }
       
-      $('#container').on('click', function(event){
-         if (isClicked) {
-         alert(5);
-         }});
+      
       
 
-      })
+      });
+   
+    
+
       
     $("#listButton").click();
     $("#map").hide();
+    $("#container").children().css("border","7px solid #524e4e");
 });

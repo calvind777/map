@@ -2,6 +2,22 @@
   font-family: 'Gotham-Book';
   src: url('../fonts/Gotham-Book.otf');
 }
+@font-face {
+  font-family: 'Simplifica';
+  src: url('../fonts/SIMPLIFICATypeface.ttf');
+}
+@font-face {
+  font-family: 'Stellar-Medium';
+  src: url('../fonts/Stellar-Medium.otf');
+}
+@font-face {
+  font-family: 'Alcubierre';
+  src: url('../fonts/Alcubierre.otf');
+}
+@font-face {
+  font-family: 'MODERNE-SANS';
+  src: url('../fonts/MODERNE-SANS.ttf');
+}
 
 h1 {
   margin: 0;
