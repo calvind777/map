@@ -1,0 +1,61 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>WorldMap</title>
+
+  <link rel="stylesheet" href="css/list.css">
+  <link rel="stylesheet" href="css/reset.css">
+
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet' type='text/css'>
+
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <main class="cd-main-content">
+    <h1>Map stuff goes here</h1>
+    <a href="#0" class="cd-btn">Fire Panel</a>
+    <!-- your content here -->
+  </main>
+
+  <div class="cd-panel from-right">
+    <header class="cd-panel-header">
+      <h1>TEST</h1>
+    </header>
+   
+    <div class="cd-panel-container">
+      <div class="cd-panel-content">
+        <h1>San Francisco</h1>
+        <a href="#0" class="cd-panel-close">Close</a>-->
+        <div id="users">
+          <input class="search" placeholder="Search" />
+          <button class="sort" data-sort="name">
+            Sort by name
+          </button>
+          <ul class="list annotated-list">
+            <li id="template" data-id="0">
+              <table>
+                <tr>
+                  <td> <img src="test_profile_img.png" height="40" width="40" class="image"> <td>
+                  <td>
+                    <h3 class="name"></h3>
+                    <p class="company"></p>
+                  </td>
+                <tr>
+              </table>
+            </li>
+          </ul>
+      </div> <!-- cd-panel-content -->
+    </div> <!-- cd-panel-container -->
+  </div> <!-- cd-panel -->
+
+  </div>
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+  <script src="http://listjs.com/no-cdn/list.js"></script>
+  <script src="js/list.js"></script>
+</body>
+</html>
